@@ -1,0 +1,77 @@
+﻿@model CongNghePhanMemTienTien.DataContext.GiangVien
+
+@{
+    ViewBag.Title = "CHỈNH SỦA THÔNG TIN GIẢNG VIÊN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner" style="margin-left: -17px;margin-bottom: 34px;background:transparent">
+        <div class="row col-lg-12">
+            <h1>CHỈNH SỬA GIẢNG VIÊN - @Model.TenGiangVien.ToUpper()</h1>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("Edit", "GiangViens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model=>model.ID)
+        @Html.HiddenFor(model => model.HinhDaiDien)
+        <div class="form-group">
+            @Html.Label("HO VÀ TÊN", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenGiangVien, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("MÃ GIẢNG VIÊN", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaGiangVien, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("SỐ ĐIỆN THOẠI", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("EMAIL", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("KHOA", "KHOA", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("KhoaID", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("HÌNH ĐẠI DIỆN", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               <img src="@Model.HinhDaiDien" class="img-responsive" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("THAY ĐỔI HÌNH ĐẠI DIỆN", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" class="form-control" name="Logo" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="LƯU LẠI" style="margin-left:1px !important" class="btn btn-success" />
+                <a href="/quan-ly/giang-vien" class="btn btn-danger"> HỦY</a>
+            </div>
+        </div>
+    </div>
+}

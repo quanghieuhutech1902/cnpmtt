@@ -1,0 +1,79 @@
+﻿@model IEnumerable<CongNghePhanMemTienTien.DataContext.DanhMucThongBao>
+
+@{
+    ViewBag.Title = "LOẠI THÔNG BÁO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-8">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1 style="font-size:x-large">LOẠI THÔNG BÁO</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/thong-bao/them-moi-loai-thong-bao" class="btn btn-success" title="thêm mới phụ huynh"><i class="fa fa-plus"></i></a> |
+                        <a href="/quan-ly/ChuyenNganhs/Export" class="btn btn-warning" title="Xuất báo phụ huynh"><i class="fa fa-upload"></i></a>
+                    </div>
+                    <div class="row col-lg-12">
+                        <table class="table table-hover">
+                            <tr>
+                                <th style="width:70px">
+                                    LOGO
+                                </th>
+                                <th>
+                                    TIÊU ĐỀ
+                                </th>
+                                <th width="120px"> TÙY CHỌN</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@item.Logo" class="img-responsive" />
+                                    </td>
+                                    <td>
+                                        @item.TieuDeTB
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" href="/thong-bao/sua-thong-tin-loai-thong-bao-@item.ID">Sửa</a> |
+                                        <a class="btn btn-danger btn-sm" href="/thong-bao/delete/@item.ID" onclick="return Xoa();">Xóa</a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<script>
+
+    function Xoa() {
+        var con = confirm("Bạn có chắc xóa không?");
+        if (con) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>

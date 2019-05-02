@@ -1,0 +1,2094 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CNPMTTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ca">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenCa" Type="nvarchar" MaxLength="50" />
+          <Property Name="ThoiGianBatDay" Type="time" Precision="7" />
+          <Property Name="ThoiGianKetThuc" Type="time" Precision="7" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ChiTietDiemDanh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaDiemDanhSV" Type="int" />
+          <Property Name="MaSV" Type="int" />
+          <Property Name="TinhTrang" Type="bit" />
+        </EntityType>
+        <EntityType Name="ChuyenNganh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenChuyenNganh" Type="nvarchar" MaxLength="150" />
+          <Property Name="MaChuyenNganh" Type="varchar" MaxLength="50" />
+          <Property Name="NganhID" Type="int" />
+          <Property Name="Logo" Type="varchar" MaxLength="150" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="DanhMucThongBao">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDeTB" Type="nvarchar" MaxLength="200" />
+          <Property Name="Logo" Type="varchar" MaxLength="150" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="DiemDanhSV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaGV" Type="int" />
+          <Property Name="MaLop" Type="int" />
+          <Property Name="Ngay" Type="datetime" />
+          <Property Name="MonHocID" Type="int" />
+          <Property Name="Ca" Type="int" />
+          <Property Name="HocBu" Type="bit" Nullable="false" />
+          <Property Name="IsCheck" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="DonViThucTap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDonVi" Type="nvarchar" MaxLength="200" />
+          <Property Name="Link" Type="varchar" MaxLength="200" />
+          <Property Name="Website" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="70" />
+          <Property Name="SoDienThoai" Type="varchar" MaxLength="10" />
+          <Property Name="DaiDien" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="15" />
+          <Property Name="DaiChi" Type="nvarchar" MaxLength="70" />
+          <Property Name="Logo" Type="varchar" MaxLength="150" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="DVTTQuanLy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenQuanLy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Link" Type="varchar" MaxLength="50" />
+          <Property Name="SoDienThoai" Type="varchar" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="DVTTID" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="GiangVien">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenGiangVien" Type="nvarchar" MaxLength="70" />
+          <Property Name="MaGiangVien" Type="varchar" MaxLength="30" />
+          <Property Name="Link" Type="nvarchar" MaxLength="70" />
+          <Property Name="SoDienThoai" Type="varchar" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="KhoaID" Type="int" />
+          <Property Name="SoLuongSinhVien" Type="int" />
+          <Property Name="HinhDaiDien" Type="varchar" MaxLength="150" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="GIangVien_MonHoc">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GiangVienID" Type="int" />
+          <Property Name="MonHocID" Type="int" />
+        </EntityType>
+        <EntityType Name="Gv_Khoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThongBaoID" Type="int" />
+          <Property Name="NoiDungTB" Type="nvarchar(max)" />
+          <Property Name="Type" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="Gv_Khoa_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GiangVienID" Type="int" />
+          <Property Name="KhoaID" Type="int" />
+          <Property Name="Gv_KhoaID" Type="int" />
+        </EntityType>
+        <EntityType Name="Khoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenKhoa" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaKhoa" Type="varchar" MaxLength="30" />
+          <Property Name="Link" Type="varchar" MaxLength="100" />
+          <Property Name="Logo" Type="varchar" MaxLength="150" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="Lop">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLop" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaLop" Type="varchar" MaxLength="30" />
+          <Property Name="Link" Type="varchar" MaxLength="30" />
+          <Property Name="KhoaID" Type="int" />
+          <Property Name="HinhDaiDien" Type="varchar" MaxLength="150" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="MonHoc">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenMonHoc" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaMonHoc" Type="varchar" MaxLength="50" />
+          <Property Name="NganhID" Type="int" />
+          <Property Name="Logo" Type="varchar" MaxLength="150" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="Nganh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNganh" Type="nvarchar" MaxLength="150" />
+          <Property Name="MaNganh" Type="varchar" MaxLength="50" />
+          <Property Name="Logo" Type="varchar" MaxLength="150" />
+          <Property Name="KhoaID" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="PhuHuynh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTenCha" Type="nvarchar" MaxLength="50" />
+          <Property Name="HoTenMe" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="70" />
+          <Property Name="DiDong" Type="varchar" MaxLength="10" />
+          <Property Name="DienThoai" Type="varchar" MaxLength="15" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="70" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RoleDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="SinhVien">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenSinhVien" Type="nvarchar" MaxLength="70" />
+          <Property Name="Link" Type="nvarchar" MaxLength="70" />
+          <Property Name="MaSinhVien" Type="nvarchar" MaxLength="15" />
+          <Property Name="LopID" Type="int" />
+          <Property Name="PhuHuynhID" Type="int" />
+          <Property Name="SoDienThoai" Type="varchar" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="70" />
+          <Property Name="ChuyenNganhID" Type="int" />
+          <Property Name="HinhDaiDien" Type="varchar" MaxLength="150" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="SinhVienThucTap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DVTTID" Type="int" />
+          <Property Name="MGV" Type="int" />
+          <Property Name="MSV" Type="int" />
+          <Property Name="ThoiGianTT" Type="float" />
+          <Property Name="NgayBD" Type="datetime" />
+          <Property Name="NgayKT" Type="datetime" />
+          <Property Name="NoiDungThucTap" Type="nvarchar" MaxLength="4000" />
+          <Property Name="MQL" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="DeletedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="Sv_Gv_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SinhVienID" Type="int" />
+          <Property Name="GiangVienID" Type="int" />
+          <Property Name="Gv_KhoaID" Type="int" />
+        </EntityType>
+        <EntityType Name="Sv_Khoa_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SinhVienID" Type="int" />
+          <Property Name="KhoaID" Type="int" />
+          <Property Name="Gv_KhoaID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserAdmin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="70" />
+          <Property Name="Password" Type="varchar" MaxLength="30" />
+          <Property Name="Type" Type="int" />
+        </EntityType>
+        <Association Name="FK_ChiTietDiemDanh_DiemDanhSV1">
+          <End Role="DiemDanhSV" Type="Self.DiemDanhSV" Multiplicity="0..1" />
+          <End Role="ChiTietDiemDanh" Type="Self.ChiTietDiemDanh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiemDanhSV">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ChiTietDiemDanh">
+              <PropertyRef Name="MaDiemDanhSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietDiemDanh_SinhVien">
+          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
+          <End Role="ChiTietDiemDanh" Type="Self.ChiTietDiemDanh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinhVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ChiTietDiemDanh">
+              <PropertyRef Name="MaSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChuyenNganh_Nganh">
+          <End Role="Nganh" Type="Self.Nganh" Multiplicity="0..1" />
+          <End Role="ChuyenNganh" Type="Self.ChuyenNganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nganh">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ChuyenNganh">
+              <PropertyRef Name="NganhID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiemDanhSV_Ca">
+          <End Role="Ca" Type="Self.Ca" Multiplicity="0..1" />
+          <End Role="DiemDanhSV" Type="Self.DiemDanhSV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ca">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DiemDanhSV">
+              <PropertyRef Name="Ca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiemDanhSV_GiangVien">
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+          <End Role="DiemDanhSV" Type="Self.DiemDanhSV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DiemDanhSV">
+              <PropertyRef Name="MaGV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiemDanhSV_Lop">
+          <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+          <End Role="DiemDanhSV" Type="Self.DiemDanhSV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DiemDanhSV">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiemDanhSV_MonHoc">
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="0..1" />
+          <End Role="DiemDanhSV" Type="Self.DiemDanhSV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonHoc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DiemDanhSV">
+              <PropertyRef Name="MonHocID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DVTTQuanLy_DonViThucTap">
+          <End Role="DonViThucTap" Type="Self.DonViThucTap" Multiplicity="0..1" />
+          <End Role="DVTTQuanLy" Type="Self.DVTTQuanLy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonViThucTap">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DVTTQuanLy">
+              <PropertyRef Name="DVTTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GiangVien_Khoa">
+          <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GiangVien">
+              <PropertyRef Name="KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GIangVien_MonHoc_GiangVien">
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+          <End Role="GIangVien_MonHoc" Type="Self.GIangVien_MonHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GIangVien_MonHoc">
+              <PropertyRef Name="GiangVienID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GIangVien_MonHoc_MonHoc">
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="0..1" />
+          <End Role="GIangVien_MonHoc" Type="Self.GIangVien_MonHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonHoc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GIangVien_MonHoc">
+              <PropertyRef Name="MonHocID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gv_Khoa_DanhMucThongBao">
+          <End Role="DanhMucThongBao" Type="Self.DanhMucThongBao" Multiplicity="0..1" />
+          <End Role="Gv_Khoa" Type="Self.Gv_Khoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucThongBao">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gv_Khoa">
+              <PropertyRef Name="ThongBaoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gv_Khoa_Detail_GiangVien">
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+          <End Role="Gv_Khoa_Detail" Type="Self.Gv_Khoa_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gv_Khoa_Detail">
+              <PropertyRef Name="GiangVienID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gv_Khoa_Detail_Gv_Khoa">
+          <End Role="Gv_Khoa" Type="Self.Gv_Khoa" Multiplicity="0..1" />
+          <End Role="Gv_Khoa_Detail" Type="Self.Gv_Khoa_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gv_Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gv_Khoa_Detail">
+              <PropertyRef Name="Gv_KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gv_Khoa_Detail_Khoa">
+          <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
+          <End Role="Gv_Khoa_Detail" Type="Self.Gv_Khoa_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gv_Khoa_Detail">
+              <PropertyRef Name="KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lop_Khoa">
+          <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
+          <End Role="Lop" Type="Self.Lop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lop">
+              <PropertyRef Name="KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonHoc_Nganh">
+          <End Role="Nganh" Type="Self.Nganh" Multiplicity="0..1" />
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nganh">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MonHoc">
+              <PropertyRef Name="NganhID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nganh_Khoa">
+          <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
+          <End Role="Nganh" Type="Self.Nganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Nganh">
+              <PropertyRef Name="KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinhVien_Lop">
+          <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SinhVien">
+              <PropertyRef Name="LopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinhVien_PhuHuynh">
+          <End Role="PhuHuynh" Type="Self.PhuHuynh" Multiplicity="0..1" />
+          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhuHuynh">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SinhVien">
+              <PropertyRef Name="PhuHuynhID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinhVienThucTap_DVTTQuanLy">
+          <End Role="DVTTQuanLy" Type="Self.DVTTQuanLy" Multiplicity="0..1" />
+          <End Role="SinhVienThucTap" Type="Self.SinhVienThucTap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DVTTQuanLy">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SinhVienThucTap">
+              <PropertyRef Name="MQL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinhVienThucTap_GiangVien">
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+          <End Role="SinhVienThucTap" Type="Self.SinhVienThucTap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SinhVienThucTap">
+              <PropertyRef Name="MGV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinhVienThucTap_SinhVien">
+          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
+          <End Role="SinhVienThucTap" Type="Self.SinhVienThucTap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinhVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SinhVienThucTap">
+              <PropertyRef Name="MSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sv_Gv_Detail_GiangVien">
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+          <End Role="Sv_Gv_Detail" Type="Self.Sv_Gv_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sv_Gv_Detail">
+              <PropertyRef Name="GiangVienID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sv_Gv_Detail_Gv_Khoa">
+          <End Role="Gv_Khoa" Type="Self.Gv_Khoa" Multiplicity="0..1" />
+          <End Role="Sv_Gv_Detail" Type="Self.Sv_Gv_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gv_Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sv_Gv_Detail">
+              <PropertyRef Name="Gv_KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sv_Khoa_Detail_Gv_Khoa">
+          <End Role="Gv_Khoa" Type="Self.Gv_Khoa" Multiplicity="0..1" />
+          <End Role="Sv_Khoa_Detail" Type="Self.Sv_Khoa_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gv_Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sv_Khoa_Detail">
+              <PropertyRef Name="Gv_KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sv_Khoa_Detail_Khoa">
+          <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
+          <End Role="Sv_Khoa_Detail" Type="Self.Sv_Khoa_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sv_Khoa_Detail">
+              <PropertyRef Name="KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CNPMTTModelStoreContainer">
+          <EntitySet Name="Ca" EntityType="Self.Ca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietDiemDanh" EntityType="Self.ChiTietDiemDanh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChuyenNganh" EntityType="Self.ChuyenNganh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhMucThongBao" EntityType="Self.DanhMucThongBao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiemDanhSV" EntityType="Self.DiemDanhSV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonViThucTap" EntityType="Self.DonViThucTap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DVTTQuanLy" EntityType="Self.DVTTQuanLy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GiangVien" EntityType="Self.GiangVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GIangVien_MonHoc" EntityType="Self.GIangVien_MonHoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gv_Khoa" EntityType="Self.Gv_Khoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gv_Khoa_Detail" EntityType="Self.Gv_Khoa_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Khoa" EntityType="Self.Khoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lop" EntityType="Self.Lop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonHoc" EntityType="Self.MonHoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nganh" EntityType="Self.Nganh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhuHuynh" EntityType="Self.PhuHuynh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleDetail" EntityType="Self.RoleDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SinhVienThucTap" EntityType="Self.SinhVienThucTap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sv_Gv_Detail" EntityType="Self.Sv_Gv_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sv_Khoa_Detail" EntityType="Self.Sv_Khoa_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAdmin" EntityType="Self.UserAdmin" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ChiTietDiemDanh_DiemDanhSV1" Association="Self.FK_ChiTietDiemDanh_DiemDanhSV1">
+            <End Role="DiemDanhSV" EntitySet="DiemDanhSV" />
+            <End Role="ChiTietDiemDanh" EntitySet="ChiTietDiemDanh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietDiemDanh_SinhVien" Association="Self.FK_ChiTietDiemDanh_SinhVien">
+            <End Role="SinhVien" EntitySet="SinhVien" />
+            <End Role="ChiTietDiemDanh" EntitySet="ChiTietDiemDanh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChuyenNganh_Nganh" Association="Self.FK_ChuyenNganh_Nganh">
+            <End Role="Nganh" EntitySet="Nganh" />
+            <End Role="ChuyenNganh" EntitySet="ChuyenNganh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiemDanhSV_Ca" Association="Self.FK_DiemDanhSV_Ca">
+            <End Role="Ca" EntitySet="Ca" />
+            <End Role="DiemDanhSV" EntitySet="DiemDanhSV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiemDanhSV_GiangVien" Association="Self.FK_DiemDanhSV_GiangVien">
+            <End Role="GiangVien" EntitySet="GiangVien" />
+            <End Role="DiemDanhSV" EntitySet="DiemDanhSV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiemDanhSV_Lop" Association="Self.FK_DiemDanhSV_Lop">
+            <End Role="Lop" EntitySet="Lop" />
+            <End Role="DiemDanhSV" EntitySet="DiemDanhSV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiemDanhSV_MonHoc" Association="Self.FK_DiemDanhSV_MonHoc">
+            <End Role="MonHoc" EntitySet="MonHoc" />
+            <End Role="DiemDanhSV" EntitySet="DiemDanhSV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DVTTQuanLy_DonViThucTap" Association="Self.FK_DVTTQuanLy_DonViThucTap">
+            <End Role="DonViThucTap" EntitySet="DonViThucTap" />
+            <End Role="DVTTQuanLy" EntitySet="DVTTQuanLy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GiangVien_Khoa" Association="Self.FK_GiangVien_Khoa">
+            <End Role="Khoa" EntitySet="Khoa" />
+            <End Role="GiangVien" EntitySet="GiangVien" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GIangVien_MonHoc_GiangVien" Association="Self.FK_GIangVien_MonHoc_GiangVien">
+            <End Role="GiangVien" EntitySet="GiangVien" />
+            <End Role="GIangVien_MonHoc" EntitySet="GIangVien_MonHoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GIangVien_MonHoc_MonHoc" Association="Self.FK_GIangVien_MonHoc_MonHoc">
+            <End Role="MonHoc" EntitySet="MonHoc" />
+            <End Role="GIangVien_MonHoc" EntitySet="GIangVien_MonHoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gv_Khoa_DanhMucThongBao" Association="Self.FK_Gv_Khoa_DanhMucThongBao">
+            <End Role="DanhMucThongBao" EntitySet="DanhMucThongBao" />
+            <End Role="Gv_Khoa" EntitySet="Gv_Khoa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gv_Khoa_Detail_GiangVien" Association="Self.FK_Gv_Khoa_Detail_GiangVien">
+            <End Role="GiangVien" EntitySet="GiangVien" />
+            <End Role="Gv_Khoa_Detail" EntitySet="Gv_Khoa_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gv_Khoa_Detail_Gv_Khoa" Association="Self.FK_Gv_Khoa_Detail_Gv_Khoa">
+            <End Role="Gv_Khoa" EntitySet="Gv_Khoa" />
+            <End Role="Gv_Khoa_Detail" EntitySet="Gv_Khoa_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gv_Khoa_Detail_Khoa" Association="Self.FK_Gv_Khoa_Detail_Khoa">
+            <End Role="Khoa" EntitySet="Khoa" />
+            <End Role="Gv_Khoa_Detail" EntitySet="Gv_Khoa_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lop_Khoa" Association="Self.FK_Lop_Khoa">
+            <End Role="Khoa" EntitySet="Khoa" />
+            <End Role="Lop" EntitySet="Lop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonHoc_Nganh" Association="Self.FK_MonHoc_Nganh">
+            <End Role="Nganh" EntitySet="Nganh" />
+            <End Role="MonHoc" EntitySet="MonHoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nganh_Khoa" Association="Self.FK_Nganh_Khoa">
+            <End Role="Khoa" EntitySet="Khoa" />
+            <End Role="Nganh" EntitySet="Nganh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinhVien_Lop" Association="Self.FK_SinhVien_Lop">
+            <End Role="Lop" EntitySet="Lop" />
+            <End Role="SinhVien" EntitySet="SinhVien" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinhVien_PhuHuynh" Association="Self.FK_SinhVien_PhuHuynh">
+            <End Role="PhuHuynh" EntitySet="PhuHuynh" />
+            <End Role="SinhVien" EntitySet="SinhVien" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinhVienThucTap_DVTTQuanLy" Association="Self.FK_SinhVienThucTap_DVTTQuanLy">
+            <End Role="DVTTQuanLy" EntitySet="DVTTQuanLy" />
+            <End Role="SinhVienThucTap" EntitySet="SinhVienThucTap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinhVienThucTap_GiangVien" Association="Self.FK_SinhVienThucTap_GiangVien">
+            <End Role="GiangVien" EntitySet="GiangVien" />
+            <End Role="SinhVienThucTap" EntitySet="SinhVienThucTap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinhVienThucTap_SinhVien" Association="Self.FK_SinhVienThucTap_SinhVien">
+            <End Role="SinhVien" EntitySet="SinhVien" />
+            <End Role="SinhVienThucTap" EntitySet="SinhVienThucTap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sv_Gv_Detail_GiangVien" Association="Self.FK_Sv_Gv_Detail_GiangVien">
+            <End Role="GiangVien" EntitySet="GiangVien" />
+            <End Role="Sv_Gv_Detail" EntitySet="Sv_Gv_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sv_Gv_Detail_Gv_Khoa" Association="Self.FK_Sv_Gv_Detail_Gv_Khoa">
+            <End Role="Gv_Khoa" EntitySet="Gv_Khoa" />
+            <End Role="Sv_Gv_Detail" EntitySet="Sv_Gv_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sv_Khoa_Detail_Gv_Khoa" Association="Self.FK_Sv_Khoa_Detail_Gv_Khoa">
+            <End Role="Gv_Khoa" EntitySet="Gv_Khoa" />
+            <End Role="Sv_Khoa_Detail" EntitySet="Sv_Khoa_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sv_Khoa_Detail_Khoa" Association="Self.FK_Sv_Khoa_Detail_Khoa">
+            <End Role="Khoa" EntitySet="Khoa" />
+            <End Role="Sv_Khoa_Detail" EntitySet="Sv_Khoa_Detail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CNPMTTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ChiTietDiemDanh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaDiemDanhSV" Type="Int32" />
+          <Property Name="MaSV" Type="Int32" />
+          <Property Name="TinhTrang" Type="Boolean" />
+          <NavigationProperty Name="DiemDanhSV" Relationship="Self.FK_ChiTietDiemDanh_DiemDanhSV1" FromRole="ChiTietDiemDanh" ToRole="DiemDanhSV" />
+          <NavigationProperty Name="SinhVien" Relationship="Self.FK_ChiTietDiemDanh_SinhVien" FromRole="ChiTietDiemDanh" ToRole="SinhVien" />
+        </EntityType>
+        <EntityType Name="DiemDanhSV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaGV" Type="Int32" />
+          <Property Name="MaLop" Type="Int32" />
+          <Property Name="Ngay" Type="DateTime" Precision="3" />
+          <Property Name="Ca" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="ChiTietDiemDanhs" Relationship="Self.FK_ChiTietDiemDanh_DiemDanhSV1" FromRole="DiemDanhSV" ToRole="ChiTietDiemDanh" />
+          <NavigationProperty Name="GiangVien" Relationship="Self.FK_DiemDanhSV_GiangVien" FromRole="DiemDanhSV" ToRole="GiangVien" />
+          <NavigationProperty Name="Lop" Relationship="Self.FK_DiemDanhSV_Lop" FromRole="DiemDanhSV" ToRole="Lop" />
+          <Property Name="MonHocID" Type="Int32" />
+          <NavigationProperty Name="Ca1" Relationship="CNPMTTModel.FK_DiemDanhSV_Ca" FromRole="DiemDanhSV" ToRole="Ca" />
+          <NavigationProperty Name="MonHoc" Relationship="CNPMTTModel.FK_DiemDanhSV_MonHoc" FromRole="DiemDanhSV" ToRole="MonHoc" />
+          <Property Name="HocBu" Type="Boolean" Nullable="false" />
+          <Property Name="IsCheck" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DonViThucTap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDonVi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DaiDien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DaiChi" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="DVTTQuanLies" Relationship="Self.FK_DVTTQuanLy_DonViThucTap" FromRole="DonViThucTap" ToRole="DVTTQuanLy" />
+          <NavigationProperty Name="SinhVienThucTaps" Relationship="Self.FK_SinhVienThucTap_DonViThucTap" FromRole="DonViThucTap" ToRole="SinhVienThucTap" />
+        </EntityType>
+        <EntityType Name="DVTTQuanLy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenQuanLy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DVTTID" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="DonViThucTap" Relationship="Self.FK_DVTTQuanLy_DonViThucTap" FromRole="DVTTQuanLy" ToRole="DonViThucTap" />
+          <NavigationProperty Name="SinhVienThucTaps" Relationship="CNPMTTModel.FK_SinhVienThucTap_DVTTQuanLy" FromRole="DVTTQuanLy" ToRole="SinhVienThucTap" />
+        </EntityType>
+        <EntityType Name="GiangVien">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenGiangVien" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="MaGiangVien" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="KhoaID" Type="Int32" />
+          <Property Name="SoLuongSinhVien" Type="Int32" />
+          <Property Name="HinhDaiDien" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="DiemDanhSVs" Relationship="Self.FK_DiemDanhSV_GiangVien" FromRole="GiangVien" ToRole="DiemDanhSV" />
+          <NavigationProperty Name="Khoa" Relationship="Self.FK_GiangVien_Khoa" FromRole="GiangVien" ToRole="Khoa" />
+          <NavigationProperty Name="SinhVienThucTaps" Relationship="Self.FK_SinhVienThucTap_GiangVien" FromRole="GiangVien" ToRole="SinhVienThucTap" />
+          <NavigationProperty Name="GIangVien_MonHoc" Relationship="CNPMTTModel.FK_GIangVien_MonHoc_GiangVien" FromRole="GiangVien" ToRole="GIangVien_MonHoc" />
+          <NavigationProperty Name="Gv_Khoa_Detail" Relationship="CNPMTTModel.FK_Gv_Khoa_Detail_GiangVien" FromRole="GiangVien" ToRole="Gv_Khoa_Detail" />
+          <NavigationProperty Name="Sv_Gv_Detail" Relationship="CNPMTTModel.FK_Sv_Gv_Detail_GiangVien" FromRole="GiangVien" ToRole="Sv_Gv_Detail" />
+        </EntityType>
+        <EntityType Name="Khoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenKhoa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaKhoa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="GiangViens" Relationship="Self.FK_GiangVien_Khoa" FromRole="Khoa" ToRole="GiangVien" />
+          <NavigationProperty Name="Lops" Relationship="CNPMTTModel.FK_Lop_Khoa" FromRole="Khoa" ToRole="Lop" />
+          <NavigationProperty Name="Nganhs" Relationship="CNPMTTModel.FK_Nganh_Khoa" FromRole="Khoa" ToRole="Nganh" />
+          <NavigationProperty Name="Gv_Khoa_Detail" Relationship="CNPMTTModel.FK_Gv_Khoa_Detail_Khoa" FromRole="Khoa" ToRole="Gv_Khoa_Detail" />
+          <NavigationProperty Name="Sv_Khoa_Detail" Relationship="CNPMTTModel.FK_Sv_Khoa_Detail_Khoa" FromRole="Khoa" ToRole="Sv_Khoa_Detail" />
+        </EntityType>
+        <EntityType Name="Lop">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaLop" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="HinhDaiDien" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="DiemDanhSVs" Relationship="Self.FK_DiemDanhSV_Lop" FromRole="Lop" ToRole="DiemDanhSV" />
+          <Property Name="KhoaID" Type="Int32" />
+          <NavigationProperty Name="Khoa" Relationship="CNPMTTModel.FK_Lop_Khoa" FromRole="Lop" ToRole="Khoa" />
+          <NavigationProperty Name="SinhViens" Relationship="CNPMTTModel.FK_SinhVien_Lop" FromRole="Lop" ToRole="SinhVien" />
+        </EntityType>
+        <EntityType Name="PhuHuynh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTenCha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HoTenMe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="DiDong" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DienThoai" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="SinhViens" Relationship="Self.FK_SinhVien_PhuHuynh" FromRole="PhuHuynh" ToRole="SinhVien" />
+        </EntityType>
+        <EntityType Name="SinhVien">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenSinhVien" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="MaSinhVien" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="LopID" Type="Int32" />
+          <Property Name="PhuHuynhID" Type="Int32" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="ChuyenNganhID" Type="Int32" />
+          <Property Name="HinhDaiDien" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="ChiTietDiemDanhs" Relationship="Self.FK_ChiTietDiemDanh_SinhVien" FromRole="SinhVien" ToRole="ChiTietDiemDanh" />
+          <NavigationProperty Name="PhuHuynh" Relationship="Self.FK_SinhVien_PhuHuynh" FromRole="SinhVien" ToRole="PhuHuynh" />
+          <NavigationProperty Name="SinhVienThucTaps" Relationship="Self.FK_SinhVienThucTap_SinhVien" FromRole="SinhVien" ToRole="SinhVienThucTap" />
+          <NavigationProperty Name="Lop" Relationship="CNPMTTModel.FK_SinhVien_Lop" FromRole="SinhVien" ToRole="Lop" />
+        </EntityType>
+        <EntityType Name="SinhVienThucTap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DVTTID" Type="Int32" />
+          <Property Name="MGV" Type="Int32" />
+          <Property Name="MSV" Type="Int32" />
+          <Property Name="ThoiGianTT" Type="Double" />
+          <Property Name="NgayBD" Type="DateTime" Precision="3" />
+          <Property Name="NgayKT" Type="DateTime" />
+          <Property Name="NoiDungThucTap" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="MQL" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="DonViThucTap" Relationship="Self.FK_SinhVienThucTap_DonViThucTap" FromRole="SinhVienThucTap" ToRole="DonViThucTap" />
+          <NavigationProperty Name="GiangVien" Relationship="Self.FK_SinhVienThucTap_GiangVien" FromRole="SinhVienThucTap" ToRole="GiangVien" />
+          <NavigationProperty Name="SinhVien" Relationship="Self.FK_SinhVienThucTap_SinhVien" FromRole="SinhVienThucTap" ToRole="SinhVien" />
+          <NavigationProperty Name="DVTTQuanLy" Relationship="CNPMTTModel.FK_SinhVienThucTap_DVTTQuanLy" FromRole="SinhVienThucTap" ToRole="DVTTQuanLy" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_ChiTietDiemDanh_DiemDanhSV1">
+          <End Role="DiemDanhSV" Type="Self.DiemDanhSV" Multiplicity="0..1" />
+          <End Role="ChiTietDiemDanh" Type="Self.ChiTietDiemDanh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiemDanhSV">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ChiTietDiemDanh">
+              <PropertyRef Name="MaDiemDanhSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietDiemDanh_SinhVien">
+          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
+          <End Role="ChiTietDiemDanh" Type="Self.ChiTietDiemDanh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinhVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ChiTietDiemDanh">
+              <PropertyRef Name="MaSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiemDanhSV_GiangVien">
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+          <End Role="DiemDanhSV" Type="Self.DiemDanhSV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DiemDanhSV">
+              <PropertyRef Name="MaGV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiemDanhSV_Lop">
+          <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+          <End Role="DiemDanhSV" Type="Self.DiemDanhSV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DiemDanhSV">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DVTTQuanLy_DonViThucTap">
+          <End Role="DonViThucTap" Type="Self.DonViThucTap" Multiplicity="0..1" />
+          <End Role="DVTTQuanLy" Type="Self.DVTTQuanLy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonViThucTap">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DVTTQuanLy">
+              <PropertyRef Name="DVTTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinhVienThucTap_DonViThucTap">
+          <End Role="DonViThucTap" Type="Self.DonViThucTap" Multiplicity="0..1" />
+          <End Role="SinhVienThucTap" Type="Self.SinhVienThucTap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonViThucTap">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SinhVienThucTap">
+              <PropertyRef Name="DVTTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GiangVien_Khoa">
+          <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GiangVien">
+              <PropertyRef Name="KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinhVienThucTap_GiangVien">
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+          <End Role="SinhVienThucTap" Type="Self.SinhVienThucTap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SinhVienThucTap">
+              <PropertyRef Name="MGV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinhVien_PhuHuynh">
+          <End Role="PhuHuynh" Type="Self.PhuHuynh" Multiplicity="0..1" />
+          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhuHuynh">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SinhVien">
+              <PropertyRef Name="PhuHuynhID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinhVienThucTap_SinhVien">
+          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
+          <End Role="SinhVienThucTap" Type="Self.SinhVienThucTap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinhVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SinhVienThucTap">
+              <PropertyRef Name="MSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CNPMTTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ChiTietDiemDanhs" EntityType="Self.ChiTietDiemDanh" />
+          <EntitySet Name="DiemDanhSVs" EntityType="Self.DiemDanhSV" />
+          <EntitySet Name="DonViThucTaps" EntityType="Self.DonViThucTap" />
+          <EntitySet Name="DVTTQuanLies" EntityType="Self.DVTTQuanLy" />
+          <EntitySet Name="GiangViens" EntityType="Self.GiangVien" />
+          <EntitySet Name="Khoas" EntityType="Self.Khoa" />
+          <EntitySet Name="Lops" EntityType="Self.Lop" />
+          <EntitySet Name="PhuHuynhs" EntityType="Self.PhuHuynh" />
+          <EntitySet Name="SinhViens" EntityType="Self.SinhVien" />
+          <EntitySet Name="SinhVienThucTaps" EntityType="Self.SinhVienThucTap" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_ChiTietDiemDanh_DiemDanhSV1" Association="Self.FK_ChiTietDiemDanh_DiemDanhSV1">
+            <End Role="DiemDanhSV" EntitySet="DiemDanhSVs" />
+            <End Role="ChiTietDiemDanh" EntitySet="ChiTietDiemDanhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietDiemDanh_SinhVien" Association="Self.FK_ChiTietDiemDanh_SinhVien">
+            <End Role="SinhVien" EntitySet="SinhViens" />
+            <End Role="ChiTietDiemDanh" EntitySet="ChiTietDiemDanhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiemDanhSV_GiangVien" Association="Self.FK_DiemDanhSV_GiangVien">
+            <End Role="GiangVien" EntitySet="GiangViens" />
+            <End Role="DiemDanhSV" EntitySet="DiemDanhSVs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiemDanhSV_Lop" Association="Self.FK_DiemDanhSV_Lop">
+            <End Role="Lop" EntitySet="Lops" />
+            <End Role="DiemDanhSV" EntitySet="DiemDanhSVs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DVTTQuanLy_DonViThucTap" Association="Self.FK_DVTTQuanLy_DonViThucTap">
+            <End Role="DonViThucTap" EntitySet="DonViThucTaps" />
+            <End Role="DVTTQuanLy" EntitySet="DVTTQuanLies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinhVienThucTap_DonViThucTap" Association="Self.FK_SinhVienThucTap_DonViThucTap">
+            <End Role="DonViThucTap" EntitySet="DonViThucTaps" />
+            <End Role="SinhVienThucTap" EntitySet="SinhVienThucTaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GiangVien_Khoa" Association="Self.FK_GiangVien_Khoa">
+            <End Role="Khoa" EntitySet="Khoas" />
+            <End Role="GiangVien" EntitySet="GiangViens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinhVienThucTap_GiangVien" Association="Self.FK_SinhVienThucTap_GiangVien">
+            <End Role="GiangVien" EntitySet="GiangViens" />
+            <End Role="SinhVienThucTap" EntitySet="SinhVienThucTaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinhVien_PhuHuynh" Association="Self.FK_SinhVien_PhuHuynh">
+            <End Role="PhuHuynh" EntitySet="PhuHuynhs" />
+            <End Role="SinhVien" EntitySet="SinhViens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinhVienThucTap_SinhVien" Association="Self.FK_SinhVienThucTap_SinhVien">
+            <End Role="SinhVien" EntitySet="SinhViens" />
+            <End Role="SinhVienThucTap" EntitySet="SinhVienThucTaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lop_Khoa" Association="CNPMTTModel.FK_Lop_Khoa">
+            <End Role="Khoa" EntitySet="Khoas" />
+            <End Role="Lop" EntitySet="Lops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinhVien_Lop" Association="CNPMTTModel.FK_SinhVien_Lop">
+            <End Role="Lop" EntitySet="Lops" />
+            <End Role="SinhVien" EntitySet="SinhViens" />
+          </AssociationSet>
+          <EntitySet Name="ChuyenNganhs" EntityType="CNPMTTModel.ChuyenNganh" />
+          <EntitySet Name="Nganhs" EntityType="CNPMTTModel.Nganh" />
+          <AssociationSet Name="FK_ChuyenNganh_Nganh" Association="CNPMTTModel.FK_ChuyenNganh_Nganh">
+            <End Role="Nganh" EntitySet="Nganhs" />
+            <End Role="ChuyenNganh" EntitySet="ChuyenNganhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nganh_Khoa" Association="CNPMTTModel.FK_Nganh_Khoa">
+            <End Role="Khoa" EntitySet="Khoas" />
+            <End Role="Nganh" EntitySet="Nganhs" />
+          </AssociationSet>
+          <EntitySet Name="DanhMucThongBaos" EntityType="CNPMTTModel.DanhMucThongBao" />
+          <EntitySet Name="GIangVien_MonHoc" EntityType="CNPMTTModel.GIangVien_MonHoc" />
+          <EntitySet Name="Gv_Khoa" EntityType="CNPMTTModel.Gv_Khoa" />
+          <EntitySet Name="Gv_Khoa_Detail" EntityType="CNPMTTModel.Gv_Khoa_Detail" />
+          <EntitySet Name="Sv_Gv_Detail" EntityType="CNPMTTModel.Sv_Gv_Detail" />
+          <EntitySet Name="Sv_Khoa_Detail" EntityType="CNPMTTModel.Sv_Khoa_Detail" />
+          <EntitySet Name="Cas" EntityType="CNPMTTModel.Ca" />
+          <AssociationSet Name="FK_DiemDanhSV_Ca" Association="CNPMTTModel.FK_DiemDanhSV_Ca">
+            <End Role="Ca" EntitySet="Cas" />
+            <End Role="DiemDanhSV" EntitySet="DiemDanhSVs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gv_Khoa_DanhMucThongBao" Association="CNPMTTModel.FK_Gv_Khoa_DanhMucThongBao">
+            <End Role="DanhMucThongBao" EntitySet="DanhMucThongBaos" />
+            <End Role="Gv_Khoa" EntitySet="Gv_Khoa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GIangVien_MonHoc_GiangVien" Association="CNPMTTModel.FK_GIangVien_MonHoc_GiangVien">
+            <End Role="GiangVien" EntitySet="GiangViens" />
+            <End Role="GIangVien_MonHoc" EntitySet="GIangVien_MonHoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gv_Khoa_Detail_GiangVien" Association="CNPMTTModel.FK_Gv_Khoa_Detail_GiangVien">
+            <End Role="GiangVien" EntitySet="GiangViens" />
+            <End Role="Gv_Khoa_Detail" EntitySet="Gv_Khoa_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sv_Gv_Detail_GiangVien" Association="CNPMTTModel.FK_Sv_Gv_Detail_GiangVien">
+            <End Role="GiangVien" EntitySet="GiangViens" />
+            <End Role="Sv_Gv_Detail" EntitySet="Sv_Gv_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gv_Khoa_Detail_Gv_Khoa" Association="CNPMTTModel.FK_Gv_Khoa_Detail_Gv_Khoa">
+            <End Role="Gv_Khoa" EntitySet="Gv_Khoa" />
+            <End Role="Gv_Khoa_Detail" EntitySet="Gv_Khoa_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sv_Gv_Detail_Gv_Khoa" Association="CNPMTTModel.FK_Sv_Gv_Detail_Gv_Khoa">
+            <End Role="Gv_Khoa" EntitySet="Gv_Khoa" />
+            <End Role="Sv_Gv_Detail" EntitySet="Sv_Gv_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sv_Khoa_Detail_Gv_Khoa" Association="CNPMTTModel.FK_Sv_Khoa_Detail_Gv_Khoa">
+            <End Role="Gv_Khoa" EntitySet="Gv_Khoa" />
+            <End Role="Sv_Khoa_Detail" EntitySet="Sv_Khoa_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gv_Khoa_Detail_Khoa" Association="CNPMTTModel.FK_Gv_Khoa_Detail_Khoa">
+            <End Role="Khoa" EntitySet="Khoas" />
+            <End Role="Gv_Khoa_Detail" EntitySet="Gv_Khoa_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sv_Khoa_Detail_Khoa" Association="CNPMTTModel.FK_Sv_Khoa_Detail_Khoa">
+            <End Role="Khoa" EntitySet="Khoas" />
+            <End Role="Sv_Khoa_Detail" EntitySet="Sv_Khoa_Detail" />
+          </AssociationSet>
+          <EntitySet Name="MonHocs" EntityType="CNPMTTModel.MonHoc" />
+          <AssociationSet Name="FK_DiemDanhSV_MonHoc" Association="CNPMTTModel.FK_DiemDanhSV_MonHoc">
+            <End Role="MonHoc" EntitySet="MonHocs" />
+            <End Role="DiemDanhSV" EntitySet="DiemDanhSVs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GIangVien_MonHoc_MonHoc" Association="CNPMTTModel.FK_GIangVien_MonHoc_MonHoc">
+            <End Role="MonHoc" EntitySet="MonHocs" />
+            <End Role="GIangVien_MonHoc" EntitySet="GIangVien_MonHoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonHoc_Nganh" Association="CNPMTTModel.FK_MonHoc_Nganh">
+            <End Role="Nganh" EntitySet="Nganhs" />
+            <End Role="MonHoc" EntitySet="MonHocs" />
+          </AssociationSet>
+          <EntitySet Name="Roles" EntityType="CNPMTTModel.Role" />
+          <EntitySet Name="RoleDetails" EntityType="CNPMTTModel.RoleDetail" />
+          <EntitySet Name="UserAdmins" EntityType="CNPMTTModel.UserAdmin" />
+          <AssociationSet Name="FK_SinhVienThucTap_DVTTQuanLy" Association="CNPMTTModel.FK_SinhVienThucTap_DVTTQuanLy">
+            <End Role="DVTTQuanLy" EntitySet="DVTTQuanLies" />
+            <End Role="SinhVienThucTap" EntitySet="SinhVienThucTaps" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Lop_Khoa">
+          <End Type="CNPMTTModel.Khoa" Role="Khoa" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.Lop" Role="Lop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lop">
+              <PropertyRef Name="KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinhVien_Lop">
+          <End Type="CNPMTTModel.Lop" Role="Lop" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.SinhVien" Role="SinhVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SinhVien">
+              <PropertyRef Name="LopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ChuyenNganh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenChuyenNganh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MaChuyenNganh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NganhID" Type="Int32" />
+          <Property Name="Logo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="Nganh" Relationship="CNPMTTModel.FK_ChuyenNganh_Nganh" FromRole="ChuyenNganh" ToRole="Nganh" />
+        </EntityType>
+        <EntityType Name="Nganh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNganh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MaNganh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="KhoaID" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="ChuyenNganhs" Relationship="CNPMTTModel.FK_ChuyenNganh_Nganh" FromRole="Nganh" ToRole="ChuyenNganh" />
+          <NavigationProperty Name="Khoa" Relationship="CNPMTTModel.FK_Nganh_Khoa" FromRole="Nganh" ToRole="Khoa" />
+          <NavigationProperty Name="MonHocs" Relationship="CNPMTTModel.FK_MonHoc_Nganh" FromRole="Nganh" ToRole="MonHoc" />
+        </EntityType>
+        <Association Name="FK_ChuyenNganh_Nganh">
+          <End Type="CNPMTTModel.Nganh" Role="Nganh" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.ChuyenNganh" Role="ChuyenNganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nganh">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ChuyenNganh">
+              <PropertyRef Name="NganhID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nganh_Khoa">
+          <End Type="CNPMTTModel.Khoa" Role="Khoa" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.Nganh" Role="Nganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Nganh">
+              <PropertyRef Name="KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DanhMucThongBao">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDeTB" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="Gv_Khoa" Relationship="CNPMTTModel.FK_Gv_Khoa_DanhMucThongBao" FromRole="DanhMucThongBao" ToRole="Gv_Khoa" />
+        </EntityType>
+        <EntityType Name="GIangVien_MonHoc">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GiangVienID" Type="Int32" />
+          <Property Name="MonHocID" Type="Int32" />
+          <NavigationProperty Name="GiangVien" Relationship="CNPMTTModel.FK_GIangVien_MonHoc_GiangVien" FromRole="GIangVien_MonHoc" ToRole="GiangVien" />
+          <NavigationProperty Name="MonHoc" Relationship="CNPMTTModel.FK_GIangVien_MonHoc_MonHoc" FromRole="GIangVien_MonHoc" ToRole="MonHoc" />
+        </EntityType>
+        <EntityType Name="Gv_Khoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThongBaoID" Type="Int32" />
+          <Property Name="NoiDungTB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="DanhMucThongBao" Relationship="CNPMTTModel.FK_Gv_Khoa_DanhMucThongBao" FromRole="Gv_Khoa" ToRole="DanhMucThongBao" />
+          <NavigationProperty Name="Gv_Khoa_Detail" Relationship="CNPMTTModel.FK_Gv_Khoa_Detail_Gv_Khoa" FromRole="Gv_Khoa" ToRole="Gv_Khoa_Detail" />
+          <NavigationProperty Name="Sv_Gv_Detail" Relationship="CNPMTTModel.FK_Sv_Gv_Detail_Gv_Khoa" FromRole="Gv_Khoa" ToRole="Sv_Gv_Detail" />
+          <NavigationProperty Name="Sv_Khoa_Detail" Relationship="CNPMTTModel.FK_Sv_Khoa_Detail_Gv_Khoa" FromRole="Gv_Khoa" ToRole="Sv_Khoa_Detail" />
+        </EntityType>
+        <EntityType Name="Gv_Khoa_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GiangVienID" Type="Int32" />
+          <Property Name="KhoaID" Type="Int32" />
+          <Property Name="Gv_KhoaID" Type="Int32" />
+          <NavigationProperty Name="GiangVien" Relationship="CNPMTTModel.FK_Gv_Khoa_Detail_GiangVien" FromRole="Gv_Khoa_Detail" ToRole="GiangVien" />
+          <NavigationProperty Name="Gv_Khoa" Relationship="CNPMTTModel.FK_Gv_Khoa_Detail_Gv_Khoa" FromRole="Gv_Khoa_Detail" ToRole="Gv_Khoa" />
+          <NavigationProperty Name="Khoa" Relationship="CNPMTTModel.FK_Gv_Khoa_Detail_Khoa" FromRole="Gv_Khoa_Detail" ToRole="Khoa" />
+        </EntityType>
+        <EntityType Name="Sv_Gv_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SinhVienID" Type="Int32" />
+          <Property Name="GiangVienID" Type="Int32" />
+          <Property Name="Gv_KhoaID" Type="Int32" />
+          <NavigationProperty Name="GiangVien" Relationship="CNPMTTModel.FK_Sv_Gv_Detail_GiangVien" FromRole="Sv_Gv_Detail" ToRole="GiangVien" />
+          <NavigationProperty Name="Gv_Khoa" Relationship="CNPMTTModel.FK_Sv_Gv_Detail_Gv_Khoa" FromRole="Sv_Gv_Detail" ToRole="Gv_Khoa" />
+        </EntityType>
+        <EntityType Name="Sv_Khoa_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SinhVienID" Type="Int32" />
+          <Property Name="KhoaID" Type="Int32" />
+          <Property Name="Gv_KhoaID" Type="Int32" />
+          <NavigationProperty Name="Gv_Khoa" Relationship="CNPMTTModel.FK_Sv_Khoa_Detail_Gv_Khoa" FromRole="Sv_Khoa_Detail" ToRole="Gv_Khoa" />
+          <NavigationProperty Name="Khoa" Relationship="CNPMTTModel.FK_Sv_Khoa_Detail_Khoa" FromRole="Sv_Khoa_Detail" ToRole="Khoa" />
+        </EntityType>
+        <EntityType Name="Ca">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenCa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianBatDay" Type="Time" Precision="7" />
+          <Property Name="ThoiGianKetThuc" Type="Time" Precision="7" />
+          <Property Name="MoTa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DiemDanhSVs" Relationship="CNPMTTModel.FK_DiemDanhSV_Ca" FromRole="Ca" ToRole="DiemDanhSV" />
+        </EntityType>
+        <Association Name="FK_DiemDanhSV_Ca">
+          <End Type="CNPMTTModel.Ca" Role="Ca" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.DiemDanhSV" Role="DiemDanhSV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ca">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DiemDanhSV">
+              <PropertyRef Name="Ca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gv_Khoa_DanhMucThongBao">
+          <End Type="CNPMTTModel.DanhMucThongBao" Role="DanhMucThongBao" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.Gv_Khoa" Role="Gv_Khoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucThongBao">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gv_Khoa">
+              <PropertyRef Name="ThongBaoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GIangVien_MonHoc_GiangVien">
+          <End Type="CNPMTTModel.GiangVien" Role="GiangVien" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.GIangVien_MonHoc" Role="GIangVien_MonHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GIangVien_MonHoc">
+              <PropertyRef Name="GiangVienID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gv_Khoa_Detail_GiangVien">
+          <End Type="CNPMTTModel.GiangVien" Role="GiangVien" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.Gv_Khoa_Detail" Role="Gv_Khoa_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gv_Khoa_Detail">
+              <PropertyRef Name="GiangVienID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sv_Gv_Detail_GiangVien">
+          <End Type="CNPMTTModel.GiangVien" Role="GiangVien" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.Sv_Gv_Detail" Role="Sv_Gv_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sv_Gv_Detail">
+              <PropertyRef Name="GiangVienID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gv_Khoa_Detail_Gv_Khoa">
+          <End Type="CNPMTTModel.Gv_Khoa" Role="Gv_Khoa" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.Gv_Khoa_Detail" Role="Gv_Khoa_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gv_Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gv_Khoa_Detail">
+              <PropertyRef Name="Gv_KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sv_Gv_Detail_Gv_Khoa">
+          <End Type="CNPMTTModel.Gv_Khoa" Role="Gv_Khoa" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.Sv_Gv_Detail" Role="Sv_Gv_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gv_Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sv_Gv_Detail">
+              <PropertyRef Name="Gv_KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sv_Khoa_Detail_Gv_Khoa">
+          <End Type="CNPMTTModel.Gv_Khoa" Role="Gv_Khoa" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.Sv_Khoa_Detail" Role="Sv_Khoa_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gv_Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sv_Khoa_Detail">
+              <PropertyRef Name="Gv_KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gv_Khoa_Detail_Khoa">
+          <End Type="CNPMTTModel.Khoa" Role="Khoa" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.Gv_Khoa_Detail" Role="Gv_Khoa_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gv_Khoa_Detail">
+              <PropertyRef Name="KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sv_Khoa_Detail_Khoa">
+          <End Type="CNPMTTModel.Khoa" Role="Khoa" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.Sv_Khoa_Detail" Role="Sv_Khoa_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sv_Khoa_Detail">
+              <PropertyRef Name="KhoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MonHoc">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenMonHoc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaMonHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NganhID" Type="Int32" />
+          <Property Name="Logo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="DeletedUser" Type="Int32" />
+          <NavigationProperty Name="DiemDanhSVs" Relationship="CNPMTTModel.FK_DiemDanhSV_MonHoc" FromRole="MonHoc" ToRole="DiemDanhSV" />
+          <NavigationProperty Name="GIangVien_MonHoc" Relationship="CNPMTTModel.FK_GIangVien_MonHoc_MonHoc" FromRole="MonHoc" ToRole="GIangVien_MonHoc" />
+          <NavigationProperty Name="Nganh" Relationship="CNPMTTModel.FK_MonHoc_Nganh" FromRole="MonHoc" ToRole="Nganh" />
+        </EntityType>
+        <Association Name="FK_DiemDanhSV_MonHoc">
+          <End Type="CNPMTTModel.MonHoc" Role="MonHoc" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.DiemDanhSV" Role="DiemDanhSV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonHoc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DiemDanhSV">
+              <PropertyRef Name="MonHocID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GIangVien_MonHoc_MonHoc">
+          <End Type="CNPMTTModel.MonHoc" Role="MonHoc" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.GIangVien_MonHoc" Role="GIangVien_MonHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonHoc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GIangVien_MonHoc">
+              <PropertyRef Name="MonHocID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonHoc_Nganh">
+          <End Type="CNPMTTModel.Nganh" Role="Nganh" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.MonHoc" Role="MonHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nganh">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MonHoc">
+              <PropertyRef Name="NganhID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RoleDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserAdmin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_SinhVienThucTap_DVTTQuanLy">
+          <End Type="CNPMTTModel.DVTTQuanLy" Role="DVTTQuanLy" Multiplicity="0..1" />
+          <End Type="CNPMTTModel.SinhVienThucTap" Role="SinhVienThucTap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DVTTQuanLy">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SinhVienThucTap">
+              <PropertyRef Name="MQL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CNPMTTModelStoreContainer" CdmEntityContainer="CNPMTTEntities">
+          <EntitySetMapping Name="ChiTietDiemDanhs">
+            <EntityTypeMapping TypeName="CNPMTTModel.ChiTietDiemDanh">
+              <MappingFragment StoreEntitySet="ChiTietDiemDanh">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MaDiemDanhSV" ColumnName="MaDiemDanhSV" />
+                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiemDanhSVs">
+            <EntityTypeMapping TypeName="CNPMTTModel.DiemDanhSV">
+              <MappingFragment StoreEntitySet="DiemDanhSV">
+                <ScalarProperty Name="IsCheck" ColumnName="IsCheck" />
+                <ScalarProperty Name="HocBu" ColumnName="HocBu" />
+                <ScalarProperty Name="MonHocID" ColumnName="MonHocID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MaGV" ColumnName="MaGV" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="Ca" ColumnName="Ca" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonViThucTaps">
+            <EntityTypeMapping TypeName="CNPMTTModel.DonViThucTap">
+              <MappingFragment StoreEntitySet="DonViThucTap">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="DaiDien" ColumnName="DaiDien" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="DaiChi" ColumnName="DaiChi" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DVTTQuanLies">
+            <EntityTypeMapping TypeName="CNPMTTModel.DVTTQuanLy">
+              <MappingFragment StoreEntitySet="DVTTQuanLy">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenQuanLy" ColumnName="TenQuanLy" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DVTTID" ColumnName="DVTTID" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GiangViens">
+            <EntityTypeMapping TypeName="CNPMTTModel.GiangVien">
+              <MappingFragment StoreEntitySet="GiangVien">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenGiangVien" ColumnName="TenGiangVien" />
+                <ScalarProperty Name="MaGiangVien" ColumnName="MaGiangVien" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="KhoaID" ColumnName="KhoaID" />
+                <ScalarProperty Name="SoLuongSinhVien" ColumnName="SoLuongSinhVien" />
+                <ScalarProperty Name="HinhDaiDien" ColumnName="HinhDaiDien" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Khoas">
+            <EntityTypeMapping TypeName="CNPMTTModel.Khoa">
+              <MappingFragment StoreEntitySet="Khoa">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenKhoa" ColumnName="TenKhoa" />
+                <ScalarProperty Name="MaKhoa" ColumnName="MaKhoa" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lops">
+            <EntityTypeMapping TypeName="CNPMTTModel.Lop">
+              <MappingFragment StoreEntitySet="Lop">
+                <ScalarProperty Name="KhoaID" ColumnName="KhoaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="HinhDaiDien" ColumnName="HinhDaiDien" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhuHuynhs">
+            <EntityTypeMapping TypeName="CNPMTTModel.PhuHuynh">
+              <MappingFragment StoreEntitySet="PhuHuynh">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HoTenCha" ColumnName="HoTenCha" />
+                <ScalarProperty Name="HoTenMe" ColumnName="HoTenMe" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiDong" ColumnName="DiDong" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SinhViens">
+            <EntityTypeMapping TypeName="CNPMTTModel.SinhVien">
+              <MappingFragment StoreEntitySet="SinhVien">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenSinhVien" ColumnName="TenSinhVien" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="MaSinhVien" ColumnName="MaSinhVien" />
+                <ScalarProperty Name="LopID" ColumnName="LopID" />
+                <ScalarProperty Name="PhuHuynhID" ColumnName="PhuHuynhID" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ChuyenNganhID" ColumnName="ChuyenNganhID" />
+                <ScalarProperty Name="HinhDaiDien" ColumnName="HinhDaiDien" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SinhVienThucTaps">
+            <EntityTypeMapping TypeName="CNPMTTModel.SinhVienThucTap">
+              <MappingFragment StoreEntitySet="SinhVienThucTap">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DVTTID" ColumnName="DVTTID" />
+                <ScalarProperty Name="MGV" ColumnName="MGV" />
+                <ScalarProperty Name="MSV" ColumnName="MSV" />
+                <ScalarProperty Name="ThoiGianTT" ColumnName="ThoiGianTT" />
+                <ScalarProperty Name="NgayBD" ColumnName="NgayBD" />
+                <ScalarProperty Name="NgayKT" ColumnName="NgayKT" />
+                <ScalarProperty Name="NoiDungThucTap" ColumnName="NoiDungThucTap" />
+                <ScalarProperty Name="MQL" ColumnName="MQL" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CNPMTTModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChuyenNganhs">
+            <EntityTypeMapping TypeName="CNPMTTModel.ChuyenNganh">
+              <MappingFragment StoreEntitySet="ChuyenNganh">
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="NganhID" ColumnName="NganhID" />
+                <ScalarProperty Name="MaChuyenNganh" ColumnName="MaChuyenNganh" />
+                <ScalarProperty Name="TenChuyenNganh" ColumnName="TenChuyenNganh" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nganhs">
+            <EntityTypeMapping TypeName="CNPMTTModel.Nganh">
+              <MappingFragment StoreEntitySet="Nganh">
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="KhoaID" ColumnName="KhoaID" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
+                <ScalarProperty Name="TenNganh" ColumnName="TenNganh" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhMucThongBaos">
+            <EntityTypeMapping TypeName="CNPMTTModel.DanhMucThongBao">
+              <MappingFragment StoreEntitySet="DanhMucThongBao">
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="TieuDeTB" ColumnName="TieuDeTB" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GIangVien_MonHoc">
+            <EntityTypeMapping TypeName="CNPMTTModel.GIangVien_MonHoc">
+              <MappingFragment StoreEntitySet="GIangVien_MonHoc">
+                <ScalarProperty Name="MonHocID" ColumnName="MonHocID" />
+                <ScalarProperty Name="GiangVienID" ColumnName="GiangVienID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gv_Khoa">
+            <EntityTypeMapping TypeName="CNPMTTModel.Gv_Khoa">
+              <MappingFragment StoreEntitySet="Gv_Khoa">
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="NoiDungTB" ColumnName="NoiDungTB" />
+                <ScalarProperty Name="ThongBaoID" ColumnName="ThongBaoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gv_Khoa_Detail">
+            <EntityTypeMapping TypeName="CNPMTTModel.Gv_Khoa_Detail">
+              <MappingFragment StoreEntitySet="Gv_Khoa_Detail">
+                <ScalarProperty Name="Gv_KhoaID" ColumnName="Gv_KhoaID" />
+                <ScalarProperty Name="KhoaID" ColumnName="KhoaID" />
+                <ScalarProperty Name="GiangVienID" ColumnName="GiangVienID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sv_Gv_Detail">
+            <EntityTypeMapping TypeName="CNPMTTModel.Sv_Gv_Detail">
+              <MappingFragment StoreEntitySet="Sv_Gv_Detail">
+                <ScalarProperty Name="Gv_KhoaID" ColumnName="Gv_KhoaID" />
+                <ScalarProperty Name="GiangVienID" ColumnName="GiangVienID" />
+                <ScalarProperty Name="SinhVienID" ColumnName="SinhVienID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sv_Khoa_Detail">
+            <EntityTypeMapping TypeName="CNPMTTModel.Sv_Khoa_Detail">
+              <MappingFragment StoreEntitySet="Sv_Khoa_Detail">
+                <ScalarProperty Name="Gv_KhoaID" ColumnName="Gv_KhoaID" />
+                <ScalarProperty Name="KhoaID" ColumnName="KhoaID" />
+                <ScalarProperty Name="SinhVienID" ColumnName="SinhVienID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cas">
+            <EntityTypeMapping TypeName="CNPMTTModel.Ca">
+              <MappingFragment StoreEntitySet="Ca">
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
+                <ScalarProperty Name="ThoiGianBatDay" ColumnName="ThoiGianBatDay" />
+                <ScalarProperty Name="TenCa" ColumnName="TenCa" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonHocs">
+            <EntityTypeMapping TypeName="CNPMTTModel.MonHoc">
+              <MappingFragment StoreEntitySet="MonHoc">
+                <ScalarProperty Name="DeletedUser" ColumnName="DeletedUser" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="NganhID" ColumnName="NganhID" />
+                <ScalarProperty Name="MaMonHoc" ColumnName="MaMonHoc" />
+                <ScalarProperty Name="TenMonHoc" ColumnName="TenMonHoc" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="CNPMTTModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleDetails">
+            <EntityTypeMapping TypeName="CNPMTTModel.RoleDetail">
+              <MappingFragment StoreEntitySet="RoleDetail">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAdmins">
+            <EntityTypeMapping TypeName="CNPMTTModel.UserAdmin">
+              <MappingFragment StoreEntitySet="UserAdmin">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

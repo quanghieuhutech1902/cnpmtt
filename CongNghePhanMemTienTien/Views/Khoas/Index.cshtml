@@ -1,0 +1,141 @@
+﻿@using PagedList.Mvc;
+@model PagedList.PagedList<CongNghePhanMemTienTien.DataContext.Khoa>
+
+@{
+    ViewBag.Title = "KHOA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>QUẢN LÝ KHOA</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/quan-ly/them-moi-khoa" class="btn btn-success" title="Thêm mới đơn vị thực tập"><i class="fa fa-plus"></i></a> |
+                        <a href="/khoas/Export" class="btn btn-warning" title="Xuất báo cáo"><i class="fa fa-upload"></i></a>
+                    </div>
+                    <div class="row col-lg-12">
+                        <table class="table table-hover">
+                            <tr>
+                                <th width="80px">
+                                    LOGO
+                                </th>
+                                <th>
+                                    TÊN KHOA
+                                </th>
+                                <th>
+                                    MÃ KHOA
+                                </th>
+                                <th>
+                                    LỚP
+                                </th>
+                                <th>
+                                    NGÀNH
+                                </th>
+                                <th>
+                                    GIẢNG VIÊN
+                                </th>
+                                <th width="120px"> TÙY CHỌN</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@item.Logo" class="img-responsive" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenKhoa)
+                                    </td>
+                                    <td>
+                                        <a>@item.MaKhoa</a>
+                                    </td>
+                                    <td>
+                                        <a href="/khoa/@item.MaKhoa.ToLower().Replace("&","")/danh-sach-lop-@item.ID">Xem tất cả</a>
+                                    </td>
+                                    <td>
+                                        <a href="/khoa/@item.MaKhoa.ToLower().Replace("&","")/danh-sach-nganh-@item.ID">Xem tất cả</a>
+                                    </td>
+                                    <td>
+                                        <a href="/khoa/@item.MaKhoa.ToLower().Replace("&","")/danh-sach-giang-vien-@item.ID">Xem tất cả</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" href="/quan-ly/sua-khoa-@item.ID">Sửa</a> |
+                                        <a class="btn btn-danger btn-sm" href="/Khoas/Delete/@item.ID" onclick="return Xoa();">Xóa</a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                        <div class="clearfix"></div>
+                        <div class="card-body breadcrumbs">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page}))
+                        </div>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<style>
+    th, td {
+        text-align: center;
+    }
+
+    .btn, .pagination > li:last-child > a {
+        border-radius: 0px;
+    }
+
+    .pagination > li:first-child > a, .pagination > li:first-child > span {
+        border-radius: 0px;
+    }
+
+    .pagination > li.active {
+        width: 30px;
+        background-color: red;
+        height: 32px;
+        text-align: center;
+        line-height: 30px;
+        color: white;
+    }
+
+    .pagination > li a {
+        color: white !important;
+    }
+
+    .pagination > li {
+        width: 30px;
+        background-color: seagreen;
+        height: 32px;
+        text-align: center;
+        line-height: 30px;
+        color: white;
+        border: solid 1px;
+    }
+</style>
+<script>
+
+    function Xoa() {
+        var con = confirm("Bạn có chắc xóa không?");
+        if (con) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>

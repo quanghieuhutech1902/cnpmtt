@@ -1,0 +1,63 @@
+﻿@model CongNghePhanMemTienTien.DataContext.DiemDanhSV
+
+@{
+    ViewBag.Title = "THÊM MỚI CA HỌC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner" style="margin-left: -17px;margin-bottom: 34px;background:transparent">
+        <div class="row col-lg-12">
+            <p style="font-size:x-large">THÊM MỚI CA HỌC</p>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("MÔN HỌC", "MÔN HỌC", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MonHocID", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("GIẢNG VIÊN", "GIẢNG VIÊN", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaGV", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("LỚP", "LỚP", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaLop", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("NGÀY", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ngay, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("CA", "CA", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Ca", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>  
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="LƯU LẠI" style="margin-left:1px !important" class="btn btn-success" />
+                <a href="/thoi-khoa-bieu/thoi-khoa-bieu" class="btn btn-danger"> HỦY</a>
+            </div>
+        </div>
+    </div>
+}

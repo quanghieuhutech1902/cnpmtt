@@ -1,0 +1,101 @@
+﻿@model IEnumerable<CongNghePhanMemTienTien.DataContext.DonViThucTap>
+
+@{
+    ViewBag.Title = "ĐƠN VỊ THỰC TẬP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>ĐƠN VỊ THỰC TẬP</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/thuc-tap/them-moi-don-vi-thuc-tap" class="btn btn-success" title="Thêm mới đơn vị thực tập"><i class="fa fa-plus"></i></a> |
+                        <a href="/thuc-tap/DonViThucTap/Export" class="btn btn-warning" title="Xuất báo cáo đơn vị thực tập"><i class="fa fa-upload"></i></a>
+                    </div>
+                    <div class="row col-lg-12">
+                        <table class="table table-hover">
+                            <tr>
+                                <th width="80px">
+                                    LOGO
+                                </th>
+                                <th>
+                                    TÊN ĐƠN VỊ
+                                </th>
+                                <th>
+                                    EMAIL
+                                </th>
+                                <th>
+                                    ĐIỆN THOẠI
+                                </th>
+                                <th>
+                                    ĐẠI DIỆN
+                                </th>
+                                <th>
+                                    ĐỊA CHỈ
+                                </th>
+                                <th width="120px"> TÙY CHỌN</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@item.Logo" class="img-responsive" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenDonVi)
+                                    </td>
+                                    <td>
+                                        <a href="mail:@item.Email" title="Email">@item.Email</a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SoDienThoai)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DaiDien)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DaiChi)
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" href="/thuc-tap/sua-don-vi-thuc-tap-@item.ID">Sửa</a> |
+                                        <a class="btn btn-danger btn-sm" href="/donvithuctap/Delete/@item.ID" onclick="return Xoa();">Xóa</a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<script>
+
+    function Xoa() {
+        var con = confirm("Bạn có chắc xóa không?");
+        if (con) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>

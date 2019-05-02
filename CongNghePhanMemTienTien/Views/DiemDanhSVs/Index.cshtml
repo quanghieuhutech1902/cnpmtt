@@ -1,0 +1,111 @@
+﻿@model IEnumerable<CongNghePhanMemTienTien.DataContext.DiemDanhSV>
+
+@{
+    ViewBag.Title = "QUẢN LÝ THỜI KHÓA BIỂU";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-8">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1 style="font-size:x-large">QUẢN LÝ THỜI KHÓA BIỂU</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/thoi-khoa-bieu/them-moi-thoi-khoa-bieu" class="btn btn-success" title="thêm mới phụ huynh"><i class="fa fa-plus"></i></a> |
+                        <a href="/quan-ly/ChuyenNganhs/Export" class="btn btn-warning" title="Xuất báo phụ huynh"><i class="fa fa-upload"></i></a>
+                    </div>
+                    <div class="row col-lg-12">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>
+                                    MÔN HỌC
+                                </th>
+                                <th width="100px">
+                                    NGÀY
+                                </th>
+                                <th width="30px">
+                                    CA
+                                </th>
+                                <th>
+                                    GIẢNG VIÊN
+                                </th>
+                                <th width="50px">
+                                    LỚP
+                                </th>
+                                <th width="130px">
+                                    TRẠNG THÁI
+                                </th>
+                                <th width="120px"> TÙY CHỌN</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.MonHoc.TenMonHoc
+                                    </td>
+                                    <td>
+                                        @item.Ngay.Value.ToString("dd/MM/yyyy")
+                                    </td>
+                                    <td>
+                                        @item.Ca1.TenCa
+                                    </td>
+                                    <td>
+                                        @item.GiangVien.TenGiangVien
+                                    </td>
+                                    <td align="center">
+                                        @item.Lop.MaLop
+                                    </td>
+                                    <td align="center">
+                                        @if (item.IsCheck == true)
+                                        {
+                                            <span class="text-success" style="font-weight:bold">X</span>
+
+                                        }
+                                        else
+                                        {
+                                            <span class="text-danger" style="font-weight:bold">X</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" href="/thoi-khoa-bieu/sua-thong-tin-thoi-khoa-bieu-@item.ID">Sửa</a> |
+                                        <a class="btn btn-danger btn-sm" href="/thoi-khoa-bieu/delete/@item.ID" onclick="return Xoa();">Xóa</a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<script>
+
+    function Xoa() {
+        var con = confirm("Bạn có chắc xóa không?");
+        if (con) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>

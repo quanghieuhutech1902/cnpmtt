@@ -1,0 +1,74 @@
+﻿@model CongNghePhanMemTienTien.DataContext.Khoa
+
+@{
+    ViewBag.Title = "CHỈNH SỬA THÔNG TIN KHOA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-12">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>CHỈNH SỬA THÔNG TIN KHOA - @Model.TenKhoa.ToUpper()</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="animated fadeIn">
+        @using (Html.BeginForm("Edit", "Khoas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ID)
+                @Html.HiddenFor(model => model.Logo)
+                <div class="form-group">
+                    @Html.Label("TÊN KHOA", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TenKhoa, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("MÃ KHOA", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MaKhoa, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("LINK WEBSITE", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    @Html.Label("LOGO", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <img src="@Model.Logo" class="img-responsive" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("THAY ĐỔI LOGO", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" class="form-control" name="Logo" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="LƯU LẠI" class="btn btn-success" />
+                        <a href="/quan-ly/khoa" class="btn btn-danger"> HỦY</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

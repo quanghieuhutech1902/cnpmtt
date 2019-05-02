@@ -1,0 +1,141 @@
+﻿@model IEnumerable<CongNghePhanMemTienTien.DataContext.SinhVien>
+@using CongNghePhanMemTienTien.DataContext
+@{
+    CNPMTTEntities db = new CNPMTTEntities();
+    var it = ViewBag.pr as CongNghePhanMemTienTien.DataContext.DiemDanhSV;
+    ViewBag.Title = "ĐIỂM DANH LỚP ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-8">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1 style="font-size:x-large">ĐIỂM DANH LỚP HỌC - @it.Lop.MaLop.ToUpper()</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="row col-lg-12">
+                        <table class="table">
+                            <tr>
+                                <th width="70px">HÌNH</th>
+                                <th>
+                                    TÊN SV
+                                </th>
+                                <th width="170px">
+                                    MÃ SV
+                                </th>
+                                <th width="150px"></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="">
+                                        <img src="@item.HinhDaiDien" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenSinhVien)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaSinhVien)
+                                    </td>
+                                    <td width="150px">
+                                        <input type="hidden" class="RecruitmentID" value="@item.ID" />
+                                        <input type="hidden" class="MaSV" value="@item.MaSinhVien" />
+                                        @if (db.ChiTietDiemDanhs.Where(s => s.MaSV == item.ID && s.MaDiemDanhSV == it.ID) == null)
+                                        {
+                                            @Html.Raw("<a style='display: none' class='btn btn-xs btn-success Offcheck' id='" + item.MaSinhVien + "'>Có mặt</a>");
+                                            @Html.Raw("<a style='display: block' class='btn btn-xs btn-danger Oncheck' id='" + item.ID + "'>Vắng mặt</a>");
+                                        }
+                                        else
+                                        {
+                                            if (db.ChiTietDiemDanhs.Where(s => s.MaSV == item.ID && s.MaDiemDanhSV == it.ID).Count() != 0 && db.ChiTietDiemDanhs.Where(s => s.MaSV == item.ID && s.MaDiemDanhSV == it.ID).FirstOrDefault().TinhTrang == true)
+                                            {
+                                                @Html.Raw("<a style='display: block' class='btn btn-xs btn-success Offcheck' id='" + item.MaSinhVien + "'>Có mặt</a>");
+                                                @Html.Raw("<a style='display: none' class='btn btn-xs btn-danger Oncheck' id='" + item.ID + "'>Vắng mặt</a>");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("<a style='display: none' class='btn btn-xs btn-success Offcheck' id='" + item.MaSinhVien + "'>Có mặt</a>");
+                                                @Html.Raw("<a style='display: block' class='btn btn-xs btn-danger Oncheck' id='" + item.ID + "'>Vắng mặt</a>");
+                                            }
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                    <div class="card-body"></div>
+                    <div class="card-body">
+                        <a class="btn btn-warning" href="/DiemDanhs/Update/@it.ID">Cập nhật</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $('.Oncheck').on('click', function () {
+        var self = $(this);
+        var MaSV = self.parent().find('.MaSV').val();
+        var MA = self.parent().find('.RecruitmentID').val();
+        $.ajax({
+            type: 'POST',
+            url: '/DiemDanhs/CapNhat',
+            data: { id: MA, id_: @it.ID },
+            success: function (data) {
+                self.hide();
+                var x = document.getElementById(MaSV);
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            },
+            error: function () {
+            }
+        })
+    });
+</script>
+
+<script type="text/javascript">
+    $('.Offcheck').on('click', function () {
+        var self = $(this);
+        var MA = self.parent().find('.RecruitmentID').val();
+        $.ajax({
+            type: 'POST',
+            url: '/DiemDanhs/CapNhat',
+            data: { id: MA, id_: @it.ID },
+            success: function (data) {
+                self.hide();
+                var x = document.getElementById(MA);
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+
+            },
+            error: function () {
+            }
+        })
+    });
+</script>
+

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<CongNghePhanMemTienTien.DataContext.PhuHuynh>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>QUẢN LÝ PHỤ PHỤ HUYNH</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/quan-ly/them-moi-phu-huynh" class="btn btn-success" title="thêm mới phụ huynh"><i class="fa fa-plus"></i></a> |
+                        <a href="/quan-ly/DonViThucTap/Export" class="btn btn-warning" title="Xuất báo phụ huynh"><i class="fa fa-upload"></i></a>
+                    </div>
+                    <div class="row col-lg-12">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>
+                                    HỌ TÊN CHA
+                                </th>
+                                <th>
+                                    HỌ TÊN MẸ
+                                </th>
+                                <th>
+                                    EMAIL
+                                </th>
+                                <th>
+                                    DI ĐỘNG
+                                </th>
+                                <th>
+                                    CỐ ĐỊNH
+                                </th>
+                                <th>
+                                    ĐỊA CHỈ
+                                </th>
+                                <th width="120px"> TÙY CHỌN</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.HoTenCha
+                                    </td>
+                                    <td>
+                                        @item.HoTenMe
+                                    </td>
+                                    <td>
+                                        <a>@item.Email</a>
+                                    </td>
+                                    <td>
+                                        <a>@item.DiDong</a>
+                                    </td>
+                                    <td>
+                                        <a>@item.DienThoai</a>
+                                    </td>
+                                    <td>
+                                        <a>@item.DiaChi</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" href="/quan-ly/sua-thong-tin-phu-huynh-@item.ID">Sửa</a> |
+                                        <a class="btn btn-danger btn-sm" href="/donvithuctap/Delete/@item.ID" onclick="return Xoa();">Xóa</a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<script>
+
+    function Xoa() {
+        var con = confirm("Bạn có chắc xóa không?");
+        if (con) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>

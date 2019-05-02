@@ -1,0 +1,112 @@
+﻿@model IEnumerable<CongNghePhanMemTienTien.DataContext.GiangVien>
+
+@{
+    ViewBag.Title = "GIẢNG VIÊN HƯỚNG DẪN THỰC TẬP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-12">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1 style="font-size:x-large">GIẢNG VIÊN HƯỚNG DẪN THỰC TẬP</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/thuc-tap/them-moi-sinh-vien-thuc-tap" class="btn btn-success" title="thêm mới phụ huynh"><i class="fa fa-plus"></i></a> |
+                        <a href="/quan-ly/sinh-vien/Export" class="btn btn-warning" title="Xuất báo phụ huynh"><i class="fa fa-upload"></i></a>
+                    </div>
+                    <div class="row col-lg-12">
+                        <table class="table table-hover">
+                            <tr>
+                                <th style="width:70px">
+                                    HÌNH
+                                </th>
+                                <th>
+                                    HỌ TÊN
+                                </th>
+                                <th>
+                                    MAGV
+                                </th>
+                                <th>
+                                    EMAIL
+                                </th>
+                                <th>
+                                    SDT
+                                </th>
+                                <th>
+                                    SINH VIÊN
+                                </th>
+                                <th width="120px"> TÙY CHỌN</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@item.HinhDaiDien" class="img-responsive" />
+                                    </td>
+                                    <td>
+                                        @item.TenGiangVien
+                                    </td>
+                                    <td>
+                                        @item.MaGiangVien
+                                    </td>
+                                    <td>
+                                        <a>@item.Email</a>
+                                    </td>
+                                    <td>
+                                        <a>@item.SoDienThoai</a>
+                                    </td> 
+                                    <td>
+                                        <a class="text-success" href="/thuc-tap/@item.MaGiangVien.ToLower()/danh-sach-sinh-vien-@item.ID">Xem tất cả</a>
+                                    </td>
+                                    <td align="center">
+                                        <a class="btn btn-danger btn-sm" href="/GiangVienThucTaps/SendMaiGV/@item.ID" onclick="return Gui();">Gửi mail</a>
+                                        <a class="btn btn-danger btn-sm" href="/SinhVienThucTaps/Delete/@item.ID" onclick="return Xoa();">Xóa</a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<script>
+
+    function Xoa() {
+        var con = confirm("Bạn có chắc xóa không?");
+        if (con) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    function Gui() {
+        var con = confirm("Bạn có chắc gửi không?");
+        if (con) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>

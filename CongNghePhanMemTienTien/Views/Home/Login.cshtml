@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "ĐĂNG NHẬP HỆ THỐNG";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<center><h2>QUẢN LÝ SINH VIÊN | ĐĂNG NHẬP HỆ THỐNG</h2></center>
+
+<form class="modal-content animate" action="/home/Login" method="post">
+    <div class="container">
+        <label><b>TÀI KHOẢN</b></label>
+        <input type="text" placeholder="Tài khoản" name="userName" required>
+
+        <label><b>MẬT KHẨU</b></label>
+        <input type="password" placeholder="Mật khẩu" name="password" required>
+
+        <button type="submit">ĐĂNG NHẬP</button>
+    </div>
+</form>

@@ -1,0 +1,81 @@
+﻿@model CongNghePhanMemTienTien.DataContext.SinhVienThucTap
+
+@{
+    ViewBag.Title = "CHỈNH SỬA THÔNG TIN SINH VIÊN THỰC TẬP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner" style="margin-left: -17px;margin-bottom: 34px;background:transparent">
+        <div class="row col-lg-12">
+            <p style="font-size:x-large">CHỈNH SỬA THÔNG TIN SINH VIÊN THỰC TẬP</p>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("NGƯỜI QUẢN LÝ TẠI ĐVTT", "NGƯỜI QUẢN LÝ TẠI ĐVTT", htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.DropDownList("MQL", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MQL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("GIẢNG VIÊN HDTT", "GIẢNG VIÊN HDTT", htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.DropDownList("MGV", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MGV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("SINH VIÊN THỰC TẬP", "SINH VIÊN THỰC TẬP", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.DropDownList("MSV", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MSV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("THỜI GIAN THỰC TẬP(THÁNG)", htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ThoiGianTT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ThoiGianTT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("NGÀY BẮT ĐẦU", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               <input class="form-control" name="NgayBD" value="@Model.NgayBD.Value.ToString("dd/MM/yyyy")" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("NGÀY KẾT THÚC", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control" name="NgayKT" value="@Model.NgayKT.Value.ToString("dd/MM/yyyy")" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("NỘI DUNG THỰC TẬP", htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                <textarea cols="20" htmlattributes="{ class = form-control }" id="NoiDungThucTap" name="NoiDungThucTap" rows="5" style="height: 130px;width: 100%;">@Model.NoiDungThucTap</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" style="margin-left:1px !important" value="LƯU LẠI" class="btn btn-success" />
+                <a href="/thuc-tap/sinh-vien-thuc-tap" class="btn btn-danger"> HỦY</a>
+            </div>
+        </div>
+    </div>
+}

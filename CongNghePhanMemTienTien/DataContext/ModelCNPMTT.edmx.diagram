@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8fdf29c6006a4cce89f13595ff04192f" Name="Diagram1" ZoomLevel="21">
+        <EntityTypeShape EntityType="CNPMTTModel.ChiTietDiemDanh" Width="1.5" PointX="8.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMTTModel.DiemDanhSV" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMTTModel.DonViThucTap" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMTTModel.DVTTQuanLy" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMTTModel.GiangVien" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMTTModel.Khoa" Width="1.5" PointX="1.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMTTModel.Lop" Width="1.5" PointX="3.75" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMTTModel.PhuHuynh" Width="1.5" PointX="1.5" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMTTModel.SinhVien" Width="1.5" PointX="4.125" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMTTModel.SinhVienThucTap" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMTTModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="CNPMTTModel.FK_ChiTietDiemDanh_DiemDanhSV1" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMTTModel.FK_ChiTietDiemDanh_SinhVien" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMTTModel.FK_DiemDanhSV_GiangVien" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMTTModel.FK_DiemDanhSV_Lop" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMTTModel.FK_DVTTQuanLy_DonViThucTap" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMTTModel.FK_SinhVienThucTap_DonViThucTap" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMTTModel.FK_GiangVien_Khoa" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMTTModel.FK_SinhVienThucTap_GiangVien" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMTTModel.FK_SinhVien_PhuHuynh" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMTTModel.FK_SinhVienThucTap_SinhVien" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMTTModel.FK_Lop_Khoa" />
+        <AssociationConnector Association="CNPMTTModel.FK_SinhVien_Lop" />
+        <EntityTypeShape EntityType="CNPMTTModel.ChuyenNganh" Width="1.5" PointX="6" PointY="0.875" />
+        <EntityTypeShape EntityType="CNPMTTModel.Nganh" Width="1.5" PointX="3.75" PointY="0.75" />
+        <AssociationConnector Association="CNPMTTModel.FK_ChuyenNganh_Nganh" />
+        <AssociationConnector Association="CNPMTTModel.FK_Nganh_Khoa" />
+        <EntityTypeShape EntityType="CNPMTTModel.DanhMucThongBao" Width="1.5" PointX="8.375" PointY="9.75" />
+        <EntityTypeShape EntityType="CNPMTTModel.GIangVien_MonHoc" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CNPMTTModel.Gv_Khoa" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CNPMTTModel.Gv_Khoa_Detail" Width="1.5" PointX="10.375" PointY="4.75" />
+        <EntityTypeShape EntityType="CNPMTTModel.Sv_Gv_Detail" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CNPMTTModel.Sv_Khoa_Detail" Width="1.5" PointX="12.375" PointY="3.75" />
+        <EntityTypeShape EntityType="CNPMTTModel.Ca" Width="1.5" PointX="12.375" PointY="6.875" />
+        <AssociationConnector Association="CNPMTTModel.FK_DiemDanhSV_Ca" />
+        <AssociationConnector Association="CNPMTTModel.FK_Gv_Khoa_DanhMucThongBao" />
+        <AssociationConnector Association="CNPMTTModel.FK_GIangVien_MonHoc_GiangVien" />
+        <AssociationConnector Association="CNPMTTModel.FK_Gv_Khoa_Detail_GiangVien" />
+        <AssociationConnector Association="CNPMTTModel.FK_Sv_Gv_Detail_GiangVien" />
+        <AssociationConnector Association="CNPMTTModel.FK_Gv_Khoa_Detail_Gv_Khoa" />
+        <AssociationConnector Association="CNPMTTModel.FK_Sv_Gv_Detail_Gv_Khoa" />
+        <AssociationConnector Association="CNPMTTModel.FK_Sv_Khoa_Detail_Gv_Khoa" />
+        <AssociationConnector Association="CNPMTTModel.FK_Gv_Khoa_Detail_Khoa" />
+        <AssociationConnector Association="CNPMTTModel.FK_Sv_Khoa_Detail_Khoa" />
+        <EntityTypeShape EntityType="CNPMTTModel.MonHoc" Width="1.5" PointX="6" PointY="23" />
+        <AssociationConnector Association="CNPMTTModel.FK_DiemDanhSV_MonHoc" />
+        <AssociationConnector Association="CNPMTTModel.FK_GIangVien_MonHoc_MonHoc" />
+        <AssociationConnector Association="CNPMTTModel.FK_MonHoc_Nganh" />
+        <EntityTypeShape EntityType="CNPMTTModel.Role" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="CNPMTTModel.RoleDetail" Width="1.5" PointX="10.375" PointY="10.75" />
+        <EntityTypeShape EntityType="CNPMTTModel.UserAdmin" Width="1.5" PointX="12.375" PointY="10.75" />
+        <AssociationConnector Association="CNPMTTModel.FK_SinhVienThucTap_DVTTQuanLy" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

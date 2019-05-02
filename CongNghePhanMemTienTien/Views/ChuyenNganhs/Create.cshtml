@@ -1,0 +1,59 @@
+﻿@model CongNghePhanMemTienTien.DataContext.ChuyenNganh
+
+@{
+    ViewBag.Title = "THÊM MỚI CHUYÊN NGÀNH";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner" style="margin-left: -17px;margin-bottom: 34px;background:transparent">
+        <div class="row col-lg-12">
+            <p style="font-size:x-large">THÊM MỚI CHUYÊN NGÀNH</p>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Create", "ChuyenNganhs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("TÊN CHUYÊN NGÀNH", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenChuyenNganh, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("MÃ CHUYÊN NGÀNH", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaChuyenNganh, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("NGÀNH", "NGÀNH", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-10">
+                @Html.DropDownList("NganhID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NganhID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("LOGO", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-10">
+                <input type="file" class="form-control" name="Logo" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="LƯU LẠI" style="margin-left:1px !important" class="btn btn-success" />
+                <a href="/quan-ly/chuyen-nganh" class="btn btn-danger"> HỦY</a>
+            </div>
+        </div>
+    </div>
+}

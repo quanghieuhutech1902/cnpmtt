@@ -1,0 +1,96 @@
+﻿@model IEnumerable<CongNghePhanMemTienTien.DataContext.DVTTQuanLy>
+
+@{
+    ViewBag.Title = "NHÂN VIÊN QUẢN LÝ SINH VIÊN THỰC TẬP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-12">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1 style="font-size:x-large">NHÂN VIÊN QUẢN LÝ SINH VIÊN THỰC TẬP</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/thuc-tap/them-moi-nhan-vien-quan-ly-thuc-tap" class="btn btn-success" title="thêm mới phụ huynh"><i class="fa fa-plus"></i></a> |
+                        <a href="/thuc-tap/nhan-vien-quan-ly-thuc-tap/Export" class="btn btn-warning" title="Xuất báo phụ huynh"><i class="fa fa-upload"></i></a>
+                    </div>
+                    <div class="row col-lg-12">
+                        <table class="table table-hover">
+                            <tr>
+                                <th style="width:50px">
+                                    <b class="fa fa-user"></b>
+                                </th>
+                                <th>
+                                    HỌ TÊN
+                                </th>
+                                <th>
+                                    SỐ ĐIỆN THOẠI
+                                </th>
+                                <th>
+                                    EMAIL
+                                </th>
+                                <th>
+                                    ĐƠN VỊ
+                                </th>
+                                <th width="120px"> TÙY CHỌN</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/images/admin.jpg" class="img-responsive" />
+                                    </td>
+                                    <td>
+                                        @item.TenQuanLy
+                                    </td>
+                                    <td>
+                                        @item.SoDienThoai
+                                    </td>
+                                    <td>
+                                        @item.Email
+                                    </td>
+                                    <td>
+                                        @item.DonViThucTap.TenDonVi
+                                    </td> 
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" href="/thuc-tap/sua-thong-tin-nhan-vien-quan-ly-thuc-tap-@item.ID">Sửa</a> |
+                                        <a class="btn btn-danger btn-sm" href="/thuc-tap/nhan-vien-thuc-tap/delete/@item.ID" onclick="return Xoa();">Xóa</a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<script>
+
+    function Xoa() {
+        var con = confirm("Bạn có chắc xóa không?");
+        if (con) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
