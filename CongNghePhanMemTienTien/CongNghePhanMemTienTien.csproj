@@ -609,6 +609,7 @@
     <Content Include="Views\GiangVienThucTaps\GuiMailThanhCong.cshtml" />
     <Content Include="Views\GiangVienThucTaps\GuiMailThatBai.cshtml" />
     <Content Include="Views\SinhViens\GetAllKhoa.cshtml" />
+    <Content Include="Views\SinhVienThucTaps\GetAllKhoa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

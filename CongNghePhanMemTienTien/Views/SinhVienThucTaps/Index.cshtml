@@ -25,9 +25,10 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="/thuc-tap/them-moi-sinh-vien-thuc-tap" class="btn btn-success" title="thêm mới phụ huynh"><i class="fa fa-plus"></i></a> |
-                        <a href="/quan-ly/sinh-vien/Export" class="btn btn-warning" title="Xuất báo phụ huynh"><i class="fa fa-upload"></i></a>
-                    </div>
+                        <a href="/thuc-tap/them-moi-sinh-vien-thuc-tap" class="btn btn-success" title="Thêm mói sinh viên thực tập"><i class="fa fa-plus"></i></a> |
+                        <a href="/sinhvienthuctaps/ExportSVF" class="btn btn-primary" title="Xuất danh sách sinh viên thực tập theo khoa"><i class="fa fa-upload"></i></a> |
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" title="Xuất báo cáo sinh viên thực tập theo khoa"><i class="fa fa-upload"></i></button>
+                     </div>
                     <div class="row col-lg-12">
                         <table class="table table-hover">
                             <tr>
@@ -113,3 +114,21 @@
         }
     }
 </script>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">DANH SÁCH KHOA</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Action("GetAllKhoa", "SinhVienThucTaps")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+
+    </div>
+</div>
