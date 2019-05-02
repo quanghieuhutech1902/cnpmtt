@@ -1,24 +1,23 @@
 ﻿@model CongNghePhanMemTienTien.DataContext.DiemDanhSV
 
 @{
-    ViewBag.Title = "SỬA THÔNG TIN THỜI KHÓA BIỂU";
+    ViewBag.Title = "SỬA THÔNG TIN THỜI KHÓA BIỂU HỌC BÙ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner" style="margin-left: -17px;margin-bottom: 34px;background:transparent">
         <div class="row col-lg-12">
-            <p style="font-size:x-large">SỬA THÔNG TIN THỜI KHÓA BIỂU - @Model.MonHoc.TenMonHoc.ToUpper()</p>
+            <p style="font-size:x-large">SỬA THÔNG TIN THỜI KHÓA BIỂU HỌC BÙ - @Model.MonHoc.TenMonHoc.ToUpper()</p>
         </div>
     </div>
 </div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("EditHB", "DiemDanhSVs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>DiemDanhSV</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
@@ -40,7 +39,7 @@
         <div class="form-group">
             @Html.Label("NGÀY", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               <input class="form-control" name="Ngay" value="@Model.Ngay.Value.ToString("dd/MM/yyyy")" />
+                <input class="form-control" name="Ngay" value="@Model.Ngay.Value.ToString("dd/MM/yyyy")" />
             </div>
         </div>
 

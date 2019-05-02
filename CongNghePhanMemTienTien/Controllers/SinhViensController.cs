@@ -11,6 +11,7 @@ using System.IO;
 using ImageResizer;
 using PagedList;
 using OfficeOpenXml;
+using CongNghePhanMemTienTien.Models;
 
 namespace CongNghePhanMemTienTien.Controllers
 {
@@ -19,6 +20,20 @@ namespace CongNghePhanMemTienTien.Controllers
         private CNPMTTEntities db = new CNPMTTEntities();
         private string pathFile = "/Files/SINH-VIEN/" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/Images/";
         private string fileName = "";
+
+        public ActionResult GetAllKhoa()
+        {
+            List<KhoaModal> list = new List<KhoaModal>();
+            list = (from kh in db.Khoas
+                    select new KhoaModal
+                    {
+                        ID = kh.ID,
+                        FName = kh.TenKhoa
+
+                    }).ToList();
+
+            return PartialView(list);
+        }
         public string UploadCreateDir(HttpPostedFileBase upload, string name)
         {
             var versions = new Dictionary<string, string>();
@@ -96,7 +111,7 @@ namespace CongNghePhanMemTienTien.Controllers
                 ViewBag.ChuyenNganhID = new SelectList(db.ChuyenNganhs, "ID", "TenChuyenNganh", sinhVien.ChuyenNganhID);
                 return View(sinhVien);
             }
-            
+
         }
         public ActionResult Edit(int? id)
         {
@@ -135,7 +150,7 @@ namespace CongNghePhanMemTienTien.Controllers
                 ViewBag.ChuyenNganhID = new SelectList(db.ChuyenNganhs, "ID", "TenChuyenNganh", sinhVien.ChuyenNganhID);
                 return View(sinhVien);
             }
-            
+
         }
         public ActionResult Delete(int id)
         {
@@ -152,11 +167,13 @@ namespace CongNghePhanMemTienTien.Controllers
             }
         }
 
-        public void Export(int? id)
+        public void ExportC(int? id)
         {
             List<SinhVien> list = new List<SinhVien>();
+            string name = string.Empty;
             if (id != null)
             {
+                name = db.Lops.Find(id).MaLop.ToUpper();
                 list = (from gv in db.SinhViens
                         orderby gv.ID descending
                         where gv.LopID == id
@@ -173,23 +190,22 @@ namespace CongNghePhanMemTienTien.Controllers
             {
                 using (ExcelPackage excelPackage = new ExcelPackage())
                 {
-                    ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("DSGiangVien_Data");
+                    ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("DSSinhVien_Data");
                     if (id == null)
-                    {
-                        worksheet.Cells["A1:F1"].Merge = true;
-                    }
-                    else
                     {
                         worksheet.Cells["A1:E1"].Merge = true;
                     }
+                    else
+                    {
+                        worksheet.Cells["A1:D1"].Merge = true;
+                    }
                     if (id != null)
                     {
-                        string name = db.Khoas.Find(id).TenKhoa.ToUpper();
-                        worksheet.Cells[1, 1].Value = "DANH SÁCH GIẢNG THUỘC " + name;
+                        worksheet.Cells[1, 1].Value = "DANH SÁCH SINH VIÊN THUỘC LỚP " + name;
                     }
                     else
                     {
-                        worksheet.Cells[1, 1].Value = "DANH SÁCH GIẢNG VIÊN";
+                        worksheet.Cells[1, 1].Value = "DANH SÁCH SINH VIÊN";
                     }
                     worksheet.Cells[1, 1].Style.Font.Bold = true;
                     worksheet.Cells[1, 1].Style.Font.Size = 18;
@@ -198,7 +214,7 @@ namespace CongNghePhanMemTienTien.Controllers
                     worksheet.Cells[1, 1].Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml("#607d8b"));
                     worksheet.Cells[1, 1].Style.Font.Color.SetColor(System.Drawing.Color.White);
 
-                    for (int j = 1; j < (id != null ? 6 : 7); j++)
+                    for (int j = 1; j < (id != null ? 5 : 6); j++)
                     {
                         worksheet.Cells[2, j].Style.Font.Bold = true;
                         worksheet.Cells[2, j].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
@@ -208,19 +224,18 @@ namespace CongNghePhanMemTienTien.Controllers
                         worksheet.Cells[2, j].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Transparent);
                     }
 
-                    worksheet.Cells[2, 1].Value = "TÊN - GV";
-                    worksheet.Cells[2, 2].Value = "MÃ - GV";
+                    worksheet.Cells[2, 1].Value = "TÊN - SV";
+                    worksheet.Cells[2, 2].Value = "MÃ - SV";
                     worksheet.Cells[2, 3].Value = "SĐT";
                     worksheet.Cells[2, 4].Value = "EMAIL";
-                    worksheet.Cells[2, 5].Value = "SỐ LƯỢNG SVTT";
                     if (id == null)
                     {
-                        worksheet.Cells[2, 6].Value = "KHOA";
+                        worksheet.Cells[2, 5].Value = "LỚP";
                     }
                     int total = list.Count();
                     for (int i = 3; i < total + 3; i++)
                     {
-                        for (int j = 1; j < (id != null ? 6 : 7); j++)
+                        for (int j = 1; j < (id != null ? 5 : 6); j++)
                         {
                             worksheet.Cells[i, j].Style.Font.Bold = true;
                             worksheet.Cells[i, j].Style.Font.Color.SetColor(System.Drawing.Color.CadetBlue);
@@ -237,19 +252,120 @@ namespace CongNghePhanMemTienTien.Controllers
                         worksheet.Cells[i + 3, 2].Value = list[i].MaSinhVien;
                         worksheet.Cells[i + 3, 3].Value = list[i].SoDienThoai;
                         worksheet.Cells[i + 3, 4].Value = list[i].Email;
-                        worksheet.Cells[i + 3, 5].Value = list[i].SinhVienThucTaps.Count();
                         if (id == null)
                         {
-                            worksheet.Cells[i + 3, 6].Value = list[i].Lop.TenLop.ToUpper();
+                            worksheet.Cells[i + 3, 5].Value = list[i].Lop.MaLop.ToUpper();
                         }
                     }
-                    for (int k = 1; k < 7; k++)
+                    for (int k = 1; k < 6; k++)
                     {
                         worksheet.Column(k).AutoFit();
                     }
 
 
-                    string saveAsFileName = DateTime.Now.ToString("yyyyMMdd") + "_Danh_Sach_Giang_Vien.xlsx";
+                    string saveAsFileName = DateTime.Now.ToString("yyyyMMdd") + "_Danh_Sach_Sinh_Vien" + name + ".xlsx";
+                    Response.Clear();
+                    Response.ContentType = "application/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", saveAsFileName));
+                    Response.AddHeader("FileName", saveAsFileName);
+                    Response.BinaryWrite(excelPackage.GetAsByteArray());
+                    Response.Flush();
+                    Response.End();
+                }
+            }
+            catch (Exception ecc)
+            {
+            }
+        }
+
+        public void ExportF(int? id)
+        {
+            List<int> list = new List<int>();
+            string tenKhoa = db.Khoas.Find(id).TenKhoa.ToUpper();
+            if (id != null)
+            {
+                list = (from gv in db.Lops
+                        orderby gv.ID descending
+                        where gv.KhoaID == id
+                        select gv.ID).ToList();
+            }
+            else
+            {
+                list = (from gv in db.Lops
+                        orderby gv.ID descending
+                        select gv.ID).ToList();
+            }
+
+            try
+            {
+                using (ExcelPackage excelPackage = new ExcelPackage())
+                {
+
+                    foreach (var item in list)
+                    {
+                        var lop = db.Lops.Find(item);
+
+                        if (lop == null || lop.SinhViens.Count == 0)
+                        {
+                            continue;
+                        }
+                        var listSV = db.SinhViens.Where(a => a.LopID == lop.ID).ToList();
+                        ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add(lop.MaLop.ToUpper());
+                        worksheet.Cells["A1:E1"].Merge = true;
+                        worksheet.Cells[1, 1].Value = "DANH SÁCH SINH VIÊN THUỘC LỚP " + lop.MaLop.ToUpper();
+
+                        worksheet.Cells[1, 1].Style.Font.Bold = true;
+                        worksheet.Cells[1, 1].Style.Font.Size = 18;
+                        worksheet.Cells[1, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                        worksheet.Cells[1, 1].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        worksheet.Cells[1, 1].Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml("#607d8b"));
+                        worksheet.Cells[1, 1].Style.Font.Color.SetColor(System.Drawing.Color.White);
+
+                        for (int j = 1; j < 6; j++)
+                        {
+                            worksheet.Cells[2, j].Style.Font.Bold = true;
+                            worksheet.Cells[2, j].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
+                            worksheet.Cells[2, j].Style.Font.Size = 15;
+                            worksheet.Cells[2, j].Style.Font.Color.SetColor(System.Drawing.Color.OrangeRed);
+                            worksheet.Cells[2, j].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                            worksheet.Cells[2, j].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Transparent);
+                        }
+
+                        worksheet.Cells[2, 1].Value = "TÊN - SV";
+                        worksheet.Cells[2, 2].Value = "MÃ - SV";
+                        worksheet.Cells[2, 3].Value = "SĐT";
+                        worksheet.Cells[2, 4].Value = "EMAIL";
+                        worksheet.Cells[2, 5].Value = "KHOA";
+                        int total = listSV.Count();
+                        for (int i = 3; i < total + 3; i++)
+                        {
+                            for (int j = 1; j < 6; j++)
+                            {
+                                worksheet.Cells[i, j].Style.Font.Bold = true;
+                                worksheet.Cells[i, j].Style.Font.Color.SetColor(System.Drawing.Color.CadetBlue);
+                                worksheet.Cells[i, j].Style.Font.Size = 13;
+                                worksheet.Cells[i, j].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                                worksheet.Cells[i, j].Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml("#f8f9fa"));
+                                worksheet.Cells[i, j].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
+                            }
+                        }
+
+                        for (int i = 0; i < total; i++)
+                        {
+                            worksheet.Cells[i + 3, 1].Value = listSV[i].TenSinhVien;
+                            worksheet.Cells[i + 3, 2].Value = listSV[i].MaSinhVien;
+                            worksheet.Cells[i + 3, 3].Value = listSV[i].SoDienThoai;
+                            worksheet.Cells[i + 3, 4].Value = listSV[i].Email;
+                            worksheet.Cells[i + 3, 5].Value = listSV[i].Lop.Khoa.TenKhoa.ToUpper();
+                        }
+                        for (int k = 1; k < 7; k++)
+                        {
+                            worksheet.Column(k).AutoFit();
+                        }
+
+                    }
+
+                    string saveAsFileName = DateTime.Now.ToString("yyyyMMdd") + "_DSSV_KHOA_"+tenKhoa+".xlsx";
                     Response.Clear();
                     Response.ContentType = "application/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                     Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", saveAsFileName));

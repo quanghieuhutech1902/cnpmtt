@@ -335,6 +335,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\KhoaModal.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -607,6 +608,7 @@
     <Content Include="Views\GiangVienThucTaps\GetAll.cshtml" />
     <Content Include="Views\GiangVienThucTaps\GuiMailThanhCong.cshtml" />
     <Content Include="Views\GiangVienThucTaps\GuiMailThatBai.cshtml" />
+    <Content Include="Views\SinhViens\GetAllKhoa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

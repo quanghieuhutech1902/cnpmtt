@@ -1,0 +1,31 @@
+﻿@model IEnumerable<CongNghePhanMemTienTien.Models.KhoaModal>
+<style>
+    #tbkhoaCNTT th, #tbkhoaCNTT td{
+        text-align:left !important;
+    }
+</style>
+<table class="table table-condensed" id="tbkhoaCNTT">
+    <thead>
+        <tr>
+            <th align="left">
+                TÊN KHOA
+            </th>
+            <th align="left">
+                #
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td align="left">
+                    @Html.DisplayFor(modelItem => item.FName)
+                </td>
+                <td align="left">
+                    <a href="/sinhviens/ExportF?id=@item.ID" class="btn btn-danger" title="Xuất báo sinh viên theo khoa"><i class="fa fa-upload"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

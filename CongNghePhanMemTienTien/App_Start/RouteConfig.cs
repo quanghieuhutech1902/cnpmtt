@@ -278,7 +278,7 @@ namespace CongNghePhanMemTienTien
             //THỜI KHOA BIỂU -> THỜI KHÓA BIỂU HỌC BÙ
             routes.MapRoute(
                name: "sua-thong-tin-thoi-khoa-bieu-hoc-bu",
-               url: "thoi-khoa-bieu/sua-thong-tin-thoi-khoa-bieu-hoc-bu-{id}",
+               url: "thoi-khoa-bieu/sua-thoi-khoa-bieu-hoc-bu-{id}",
                defaults: new { controller = "DiemDanhSVs", action = "EditHB", id = UrlParameter.Optional }
            );
             routes.MapRoute(
